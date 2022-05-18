@@ -59,17 +59,18 @@ body {
   fill: #000;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan {
-  z-index: 2;
   position: absolute;
   text-transform: uppercase;
+  z-index: 2;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.year_text___3ryI5 {
   font-size: 14pt;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.year___z7c-F {
+  fill: #009EDB;
   font-size: 32pt;
-  line-height: 40pt;
   font-weight: 700;
+  line-height: 40pt;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.temp___1zivY {
   font-size: 14pt;
@@ -96,8 +97,11 @@ body {
 .app___2khK2 .bars_aux___NTitX {
   display: block;
 }
+.app___2khK2 .months_text___Pqvo7 {
+  font-size: 14pt;
+}
 .app___2khK2 .meta_container___3p0xG {
-  bottom: 50px;
+  bottom: 40px;
   display: block;
   font-size: 9pt;
   left: calc(50% - 450px);
@@ -117,7 +121,7 @@ body {
   text-decoration: underline;
 }
 .app___2khK2 .scales_container___1pYId {
-  bottom: 60px;
+  bottom: 40px;
   color: #000;
   font-family: sans-serif;
   font-weight: 400;
