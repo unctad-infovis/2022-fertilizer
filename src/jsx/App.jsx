@@ -170,7 +170,7 @@ class App extends Component {
     // Create interactive layer.
     this.createInteractiveLayer(data);
     // Create line legend.
-    this.createLineLegend();
+    // this.createLineLegend();
   }
   createCenterContainer() {
     const center_diameter = 175;
@@ -251,7 +251,9 @@ class App extends Component {
           .attr('x', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? -y(my_domain[1]) - 10 : y(my_domain[1]) + 10)
           .attr('y', 0)
           .text(d => d.region)
-          .style('font-size', '9pt')
+          .style('font-weight', d => (d.concern < 1.5 && d.value > 0.10) ? 700 : 400)
+          .style('fill', d => (d.concern < 1.5 && d.value > 0.10) ? '#ED1847' : '#AEA29A')
+          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '12pt' : '9pt')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
         // Radial line
@@ -349,7 +351,6 @@ class App extends Component {
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .text('Low priority & High demand');
-
   }
   createInteractiveLayer(data) {
     // Interactive layer.
@@ -416,7 +417,7 @@ class App extends Component {
     return (
       <div className={style.app}>
         <div className={style.heading_container}>
-          <h1>Relative fertilicer procurement</h1>
+          <h1>Relative fertilizer procurement</h1>
         </div>
         <div className={style.chart_container}></div>
         <div className={style.scales_container}>
@@ -427,7 +428,7 @@ class App extends Component {
           <div className={style.scale_label}>Relative procurement</div>
         </div>
         <div className={style.meta_container}>
-          <div>Relative fertilicer procurement and the priority for selected areas</div>
+          <div>Relative fertilizer procurement and the priority for selected areas</div>
           <div>Source: <a href="https://unctad.org">UNCTAD</a></div>
         </div>
         <div className={style.tooltip}></div>

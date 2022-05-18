@@ -65,16 +65,17 @@ body {
         // fill: #e16767;
         fill: #000;
         tspan {
-          z-index: 2;
           position: absolute;
           text-transform: uppercase;
+          z-index: 2;
           &.year_text {
             font-size: 14pt;
           }
           &.year {
+            fill: #009EDB;
             font-size: 32pt;
-            line-height: 40pt;
             font-weight: 700;
+            line-height: 40pt;
           }
           &.temp {
             font-size: 14pt;
@@ -107,8 +108,11 @@ body {
   .bars_aux {
     display: block;
   }
+  .months_text {
+    font-size: 14pt;
+  }
   .meta_container {
-    bottom: 50px;
+    bottom: 40px;
     display: block;
     font-size: 9pt;
     left: calc(50% - 450px);
@@ -128,7 +132,7 @@ body {
     }
   }
   .scales_container {
-    bottom: 60px;
+    bottom: 40px;
     color: #000;
     font-family: sans-serif;
     font-weight: 400;
