@@ -1,6 +1,6 @@
 # 2022-fertilizer
 
-**Live demo** https://ebuddj.github.io/2022-fertilizer/
+**Live demo** https://unctad-data.github.io/2022-fertilizer/
 
 ## Rights of usage
 
