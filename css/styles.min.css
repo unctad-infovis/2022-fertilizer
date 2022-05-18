@@ -59,21 +59,23 @@ body {
   fill: #000;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan {
+  fill: #009EDB;
   position: absolute;
   text-transform: uppercase;
   z-index: 2;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.year_text___3ryI5 {
   font-size: 14pt;
+  font-weight: 700;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.year___z7c-F {
-  fill: #009EDB;
   font-size: 32pt;
   font-weight: 700;
   line-height: 40pt;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS tspan.temp___1zivY {
   font-size: 14pt;
+  font-weight: 700;
 }
 .app___2khK2 .chart_container___3Jzlm svg .chart_legend_rings___eZkbG text {
   fill: #000;
