@@ -251,9 +251,10 @@ class App extends Component {
           .attr('x', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? -y(my_domain[1]) - 10 : y(my_domain[1]) + 10)
           .attr('y', 0)
           .text(d => d.region)
-          .style('font-weight', d => (d.concern < 1.5 && d.value > 0.10) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5 && d.value > 0.10) ? '#ED1847' : '#AEA29A')
+          .style('font-weight', d => (d.value > 0.10) ? 700 : 400)
+          .style('fill', d => (d.concern < 1.5) ? '#ED1847' : (d.concern < 2) ? '#dd98a5' : '#AEA29A')
           .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '12pt' : '9pt')
+          .style('text-transform', d => (d.concern < 1.5 && d.value > 0.10) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
         // Radial line
