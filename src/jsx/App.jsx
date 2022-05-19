@@ -157,7 +157,7 @@ class App extends Component {
       .data(data).enter()
       .append('path')
       .attr('fill', d => f(d['concern']))
-      .attr('data-id', d => d.id)
+      .attr('data-id', d => d.region)
       .attr('d', d3.arc()
         .innerRadius(d => y(my_domain[0]))
         .outerRadius(d => (d.region !== '') ? y(d['value']) : y(my_domain[0]))
@@ -209,7 +209,7 @@ class App extends Component {
       .each((d, i, nodes) => {
         // Name.
         d3.select(nodes[i]).append('text')
-          .attr('data-id', d => d.id)
+          .attr('data-id', d => d.region)
           .attr('x', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? -y(my_domain[1]) - 10 : y(my_domain[1]) + 10)
           .attr('y', 0)
           .text(d => d.region)
@@ -331,11 +331,11 @@ class App extends Component {
       .attr('href', d => '')
       .append('path')
       .attr('class', style.aux)
-      .attr('data-id', d => d.id)
+      .attr('data-id', d => d.region)
       .attr('fill', 'transparent')
       .attr('d', d3.arc()
         .innerRadius(inner_radius)
-        .outerRadius(outer_radius + 35)
+        .outerRadius(outer_radius + 100)
         .startAngle(d => x(d.id))
         .endAngle(d => x(d.id) + x.bandwidth())
         .padRadius(inner_radius))
@@ -346,13 +346,13 @@ class App extends Component {
   onMouseOver(event, d) {
     if (d.region !== '') {
       d3.select('.' + style.bars_container)
-        .selectAll('path:not(path[data-id="' + d.id + '"])')
+        .selectAll('path:not(path[data-id="' + d.region + '"])')
         .style('opacity', 0.2);
       d3.select('.' + style.bars_info_container)
-        .select('text[data-id="' + d.id + '"]')
+        .select('text[data-id="' + d.region + '"]')
         .style('opacity', 1);
       d3.select('.' + style.bars_info_container)
-        .selectAll('text:not(text[data-id="' + d.id + '"])')
+        .selectAll('text:not(text[data-id="' + d.region + '"])')
         .style('opacity', 0.2);
       d3.select(event.currentTarget).style('opacity', 1);
       d3.select('.' + style.tooltip)
