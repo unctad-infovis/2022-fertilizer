@@ -10,17 +10,18 @@ import chroma from 'chroma-js';
 // https://gka.github.io/chroma.js/
 const scaleMax = 3,
       scaleMin = 1,
-      f = chroma.scale(['rgba(174, 162, 154, 0.05)', '#ED1847']).domain([scaleMax, scaleMin]);
+      f = chroma.scale(['rgba(174, 162, 154, 0.05)', '#009edb']).domain([scaleMax, scaleMin]);
 const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
-      outer_radius = 350,
+      outer_radius = 300,
       my_domain = [0, 0.2],
       legend_ring_points = [0.05, 0.1, 0.15, 0.2],
       height = (window.innerHeight > window.innerWidth) ? window.innerWidth - margin.left - margin.right : window.innerHeight - margin.left - margin.right,
       width = (window.innerHeight > window.innerWidth) ? window.innerHeight - margin.top - margin.bottom : window.innerWidth - margin.top - margin.bottom;
 
+const may_push = 0.49;
 const x = d3.scaleBand()
-  .range([0.06, Math.PI * 2 - 0.1])
+  .range([0.06 + Math.PI/2 + may_push, Math.PI * 2 + Math.PI/2 + may_push])
   .align(0);
 const y = d3.scaleLinear()
   .range([inner_radius, outer_radius])
@@ -39,52 +40,7 @@ const pie = d3.pie()
   .endAngle(Math.PI * 2 - 0.05)
   .value(d => d.value)
   .sort(null);
-const months_data = [{
-    name:'January',
-    value:6
-  },{
-    name:'February',
-    value:6
-  },{
-    name:'March',
-    value:6
-  },{
-    name:'April',
-    value:6
-  },{
-    name:'May',
-    value:5.2
-  },{
-    name:'',
-    value:0.8
-  },{
-    name:'June',
-    value:5.2
-  },{
-    name:'',
-    value:0.8
-  },{
-    name:'July',
-    value:5.2
-  },{
-    name:'',
-    value:0.8
-  },{
-    name:'August',
-    value:5.2
-  },{
-    name:'September',
-    value:6
-  },{
-    name:'October',
-    value:6
-  },{
-    name:'November',
-    value:6
-  },{
-    name:'December',
-    value:6
-  }];
+const months_data = [{name:'January',value:6},{name:'February',value:6},{name:'March',value:6},{name:'April',value:6},{name:'May',value:5.2},{name:'',value:0.8},{name:'June',value:5.2},{name:'',value:0.8},{name:'July',value:5.2},{name:'',value:0.8},{name:'August',value:5.2},{name:'September',value:6},{name:'October',value:6},{name:'November',value:6},{name:'December',value:6}];
 
 class App extends Component {
   constructor(props) {
@@ -126,19 +82,19 @@ class App extends Component {
       .data(pie(months_data))
       .enter().append('path')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
-      .attr('d',  d3.arc().innerRadius(0).outerRadius(350))
+      .attr('d',  d3.arc().innerRadius(0).outerRadius(300))
       .style('fill', (d) => {
         if (d.index === 4) {
-          return 'rgba(247, 223, 223, 0.8)';
+          return 'rgba(197, 223, 239, 0.8)';
         }
         if (d.index === 6) {
-          return 'rgba(247, 223, 223, 0.6)';
+          return 'rgba(197, 223, 239, 0.6)';
         }
         if (d.index === 8) {
-          return 'rgba(247, 223, 223, 0.4)';
+          return 'rgba(197, 223, 239, 0.4)';
         }
         if (d.index === 10) {
-          return 'rgba(247, 223, 223, 0.2)';
+          return 'rgba(197, 223, 239, 0.2)';
         }
         else {
           return 'transparent';
@@ -173,7 +129,7 @@ class App extends Component {
     // this.createLineLegend();
   }
   createCenterContainer() {
-    const center_diameter = 175;
+    const center_diameter = 150;
     chart_elements.append('g')
       .attr('transform', 'translate(' + (width / 2 - center_diameter / 2) + ',' + (height / 2 - center_diameter / 2) + ')')
       .append('foreignObject')
@@ -185,7 +141,7 @@ class App extends Component {
       .append('text')
       .attr('y', margin.top + height / 2)
       .style('text-anchor', 'middle')
-      .html('<tspan class="' + style.year_text + '"x="' + (width / 2) + '" y="' + (margin.top + (height / 2) - 35) + '">Priority</tspan><tspan class="' + style.year + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 12) + '">in May</tspan><tspan class="' + style.temp + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 45) + '">to Africa</tspan>');
+      .html('<tspan class="' + style.year_text + '"x="' + (width / 2) + '" y="' + (margin.top + (height / 2) - 25) + '">Priority</tspan><tspan class="' + style.year + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 12) + '">in May</tspan><tspan class="' + style.temp + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 40) + '">to Africa</tspan>');
   }
   createRadialBars(data) {
     chart_elements.append('g')
@@ -202,11 +158,11 @@ class App extends Component {
         .startAngle(d => x(d.id))
         .endAngle(d => x(d.id) + x.bandwidth())
         .padRadius(inner_radius))
-      .attr('opacity', 0)
+      .style('opacity', 0)
       .transition()
-      .duration(300)
-      .delay((d, i) => i * 30)
-      .attr('opacity', 1)
+      .duration(30)
+      .delay(d => d.delay_multiplier2 * 30 + d.delay_multiplier * 1000)
+      .style('opacity', 1)
       .style('pointer-events', 'none');
   }
   createRadialRings() {
@@ -252,20 +208,23 @@ class App extends Component {
           .attr('y', 0)
           .text(d => d.region)
           .style('font-weight', d => (d.value > 0.10) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5) ? '#ED1847' : (d.concern < 2) ? '#dd98a5' : '#AEA29A')
+          .style('fill', d => (d.concern < 1.5) ? '#009EDB' : (d.concern < 2) ? '#C5DFEF' : '#aea29a')
           .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '12pt' : '9pt')
           .style('text-transform', d => (d.concern < 1.5 && d.value > 0.10) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
+          .style('opacity', 0)
+          .transition()
+          .duration(30)
+          .delay((d, i) => d.delay_multiplier2 * 30 + d.delay_multiplier * 1000)
+          .style('opacity', 1);
         // Radial line
         d3.select(nodes[i]).append('line')
-          .attr('x1', 87)
+          .attr('x1', 75)
           .attr('x2', y(my_domain[1]) + 5)
           .attr('y1', 0)
           .attr('y2', 0)
-          .style('opacity', (d) => {
-            return (d.region === '') ? 0 : 0.5
-          })
+          .style('opacity', d => (d.region === '') ? 0 : 0.5)
           .style('stroke', '#000')
           .style('stroke-width', 0.15);
       })
@@ -277,7 +236,7 @@ class App extends Component {
       .data(pie(months_data))
       .enter().append('path')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
-      .attr('d',  d3.arc().innerRadius(300).outerRadius(301))
+      .attr('d',  d3.arc().innerRadius(270).outerRadius(271))
       .style('fill', (d) => 'transparent')
       .each((d, i, nodes) => {
         let first_arc_section = /(^.+?)L/;  
@@ -310,7 +269,7 @@ class App extends Component {
       .attr('startOffset', '50%')
       .style('text-anchor', 'middle')
       .style('fill', (d) => {
-        return (d.index === 4) ? '#ED1847' : '#6E6259';
+        return (d.index === 4) ? '#009edb' : '#6e6259';
       })
       .attr('xlink:href', (d, i) => '#months_arc' + i)
       .text((d) => d.data.name);
