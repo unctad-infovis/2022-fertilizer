@@ -6,9 +6,9 @@ body {
 .app___2khK2 {
   background-color: #fff;
   font-family: 'Roboto';
-  margin: auto auto;
   height: 100vh;
-  overflow: hidden;
+  margin: auto auto;
+  position: relative;
 }
 .app___2khK2 .tooltip___MFNHN {
   background-color: rgba(255, 255, 255, 0.9);
@@ -28,7 +28,7 @@ body {
 .app___2khK2 .heading_container___jzq9M h1 {
   font-size: 26pt;
   line-height: 26pt;
-  margin: 40px 0 0 0;
+  margin: 10px 0 0 0;
   padding: 0;
   text-align: center;
 }
@@ -90,8 +90,9 @@ body {
 .app___2khK2 .meta_container___3p0xG {
   bottom: 40px;
   display: block;
+  display: none;
   font-size: 9pt;
-  left: calc(50% - 450px);
+  left: calc(50%);
   position: absolute;
   width: 200px;
   z-index: 1;
@@ -108,11 +109,11 @@ body {
   text-decoration: underline;
 }
 .app___2khK2 .scales_container___1pYId {
-  bottom: 40px;
+  bottom: 10px;
   color: #000;
   font-family: sans-serif;
   font-weight: 400;
-  left: calc(50% + 230px);
+  left: calc(50% - 152px/2);
   opacity: 1;
   position: absolute;
   z-index: 1;
@@ -150,8 +151,8 @@ body {
   width: 2px;
 }
 .app___2khK2 .scales_container___1pYId .scale_label___vvLum {
-  font-size: 12pt;
-  opacity: 0.7;
+  font-size: 11pt;
+  opacity: 1;
   text-align: center;
 }
 .app___2khK2 .legend_text___naI0q {
