@@ -22,8 +22,14 @@ body {
 .app___2khK2 .heading_container___jzq9M {
   position: absolute;
   width: 100%;
+  text-transform: uppercase;
+  color: #009edb;
 }
 .app___2khK2 .heading_container___jzq9M h1 {
+  font-size: 26pt;
+  line-height: 26pt;
+  margin: 40px 0 0 0;
+  padding: 0;
   text-align: center;
 }
 .app___2khK2 .chart_container___3Jzlm svg .title___2r2fk {
