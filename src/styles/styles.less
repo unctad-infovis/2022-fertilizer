@@ -7,9 +7,9 @@ body {
 .app {
   background-color: #fff;
   font-family: 'Roboto';
-  margin: auto auto;
   height: 100vh;
-  overflow: hidden;
+  margin: auto auto;
+  position: relative;
   .tooltip {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ccc;
@@ -27,7 +27,7 @@ body {
     h1 {
       font-size: 26pt;
       line-height: 26pt;
-      margin: 40px 0 0 0;
+      margin: 10px 0 0 0;
       padding: 0;
       text-align: center;
     }
@@ -100,8 +100,9 @@ body {
   .meta_container {
     bottom: 40px;
     display: block;
+    display: none;
     font-size: 9pt;
-    left: calc(50% - 450px);
+    left: calc(50%);
     position: absolute;
     width: 200px;
     z-index: 1;
@@ -118,11 +119,11 @@ body {
     }
   }
   .scales_container {
-    bottom: 40px;
+    bottom: 10px;
     color: #000;
     font-family: sans-serif;
     font-weight: 400;
-    left: calc(50% + 230px);
+    left: calc(50% - 152px/2);
     opacity: 1;
     position: absolute;
     z-index: 1;
@@ -159,8 +160,8 @@ body {
       width: 2px;
     }
     .scale_label {
-      font-size: 12pt;
-      opacity: 0.7;
+      font-size: 11pt;
+      opacity: 1;
       text-align: center;
     }
   }

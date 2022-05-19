@@ -180,7 +180,7 @@ class App extends Component {
       .join('text')
       .attr('x', d => width / 2 + y(d) + 3)
       .attr('y', d => height / 2 + 7)
-      .text(d => (d > 0) ? '' + d * 100 + '%' : d * 100 + '%')
+      .text(d => (d === 0.2) ? d * 100 + '% of annual procurement' : d * 100 + '%')
       .style('opacity', 0.7)
       .style('font-size', d => (d === 0) ? '11pt' : '11pt')
       .style('font-weight', d => (d === 0) ? 700 : 700)
@@ -207,7 +207,7 @@ class App extends Component {
           .text(d => d.region)
           .style('font-weight', d => (d.value > 0.10) ? 700 : 400)
           .style('fill', d => (d.concern < 1.5) ? '#009edb' : (d.concern < 2) ? '#c5dfef' : '#aea29a')
-          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '14pt' : '10pt')
+          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '16pt' : '11pt')
           .style('text-transform', d => (d.concern < 1.5 && d.value > 0.10) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
@@ -383,7 +383,6 @@ class App extends Component {
             // The scale on the right.
             scales.map((scale, i) => (<div key={i} className={style.scale_container} style={{backgroundColor:f(scale)}}></div>))
           }
-          <div className={style.scale_label}>Relative procurement</div>
         </div>
         <div className={style.meta_container}>
           <div>Relative fertilizer procurement and the priority for selected areas</div>
