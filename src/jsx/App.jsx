@@ -8,6 +8,8 @@ import * as d3 from 'd3';
 import chroma from 'chroma-js';
 // Use chroma to make the color scale.
 // https://gka.github.io/chroma.js/
+import fertilizer_img from './../../media/img/fertilizer.png';
+
 const scaleMax = 3,
       scaleMin = 1,
       f = chroma.scale(['rgba(174, 162, 154, 0.05)', '#009edb']).domain([scaleMax, scaleMin]);
@@ -137,13 +139,15 @@ class App extends Component {
       .append('foreignObject')
       .style('width', center_diameter + 'px')
       .style('height', center_diameter + 'px')
-      .html('<div class="' + style.center_container + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"></div>');
+      .html('<div class="' + style.center_container + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"><img src="' + fertilizer_img + '" /></div>');
     chart_elements.append('g')
       .attr('class', style.center_text)
       .append('text')
       .attr('y', margin.top + height / 2)
       .style('text-anchor', 'middle')
-      .html('<tspan class="' + style.year_text + '"x="' + (width / 2) + '" y="' + (margin.top + (height / 2) - 25) + '">Priority</tspan><tspan class="' + style.year + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 12) + '">in May</tspan><tspan class="' + style.temp + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 40) + '">to Africa</tspan>');
+      .style('opacity', 0)
+
+      .html('<tspan class="' + style.year_text + '"x="' + (width / 2) + '" y="' + (margin.top + (height / 2) - 25) + '">Priority</tspan><tspan class="' + style.year + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 12) + '">in May </tspan><tspan class="' + style.temp + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 40) + '">to Africa</tspan>');
   }
   createRadialBars(data) {
     chart_elements.append('g')
@@ -183,7 +187,7 @@ class App extends Component {
       .data(legend_ring_points)
       .join('text')
       .attr('x', d => width / 2 + y(d) + 3)
-      .attr('y', d => height / 2 + 3)
+      .attr('y', d => height / 2 + 7)
       .text(d => (d > 0) ? '' + d * 100 + '%' : d * 100 + '%')
       .style('opacity', 0.7)
       .style('font-size', d => (d === 0) ? '11pt' : '11pt')
