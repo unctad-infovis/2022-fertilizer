@@ -10,9 +10,9 @@ import chroma from 'chroma-js';
 // https://gka.github.io/chroma.js/
 import fertilizer_img from './../../media/img/fertilizer.png';
 
-const scaleMax = 3,
+const scaleMax = 2.8,
       scaleMin = 1,
-      f = chroma.scale(['rgba(174, 162, 154, 0.05)', '#009edb']).domain([scaleMax, scaleMin]);
+      f = chroma.scale(['#DED9D5', '#009edb']).domain([scaleMax, scaleMin]);
 const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
       outer_radius = 300,
@@ -140,14 +140,6 @@ class App extends Component {
       .style('width', center_diameter + 'px')
       .style('height', center_diameter + 'px')
       .html('<div class="' + style.center_container + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"><img src="' + fertilizer_img + '" /></div>');
-    chart_elements.append('g')
-      .attr('class', style.center_text)
-      .append('text')
-      .attr('y', margin.top + height / 2)
-      .style('text-anchor', 'middle')
-      .style('opacity', 0)
-
-      .html('<tspan class="' + style.year_text + '"x="' + (width / 2) + '" y="' + (margin.top + (height / 2) - 25) + '">Priority</tspan><tspan class="' + style.year + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 12) + '">in May </tspan><tspan class="' + style.temp + '" x="' + (width / 2) + '" y="' + (margin.top + (height / 2) + 40) + '">to Africa</tspan>');
   }
   createRadialBars(data) {
     chart_elements.append('g')
@@ -214,8 +206,8 @@ class App extends Component {
           .attr('y', 0)
           .text(d => d.region)
           .style('font-weight', d => (d.value > 0.10) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5) ? '#009EDB' : (d.concern < 2) ? '#C5DFEF' : '#aea29a')
-          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '12pt' : '9pt')
+          .style('fill', d => (d.concern < 1.5) ? '#009edb' : (d.concern < 2) ? '#c5dfef' : '#aea29a')
+          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '14pt' : '10pt')
           .style('text-transform', d => (d.concern < 1.5 && d.value > 0.10) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
@@ -334,7 +326,7 @@ class App extends Component {
       .attr('data-id', d => d.region)
       .attr('fill', 'transparent')
       .attr('d', d3.arc()
-        .innerRadius(inner_radius)
+        .innerRadius(outer_radius)
         .outerRadius(outer_radius + 100)
         .startAngle(d => x(d.id))
         .endAngle(d => x(d.id) + x.bandwidth())
@@ -383,7 +375,7 @@ class App extends Component {
     return (
       <div className={style.app}>
         <div className={style.heading_container}>
-          <h1>Relative fertilizer procurement</h1>
+          <h1>Fertilizer problem is most urgent in Africa</h1>
         </div>
         <div className={style.chart_container}></div>
         <div className={style.scales_container}>
