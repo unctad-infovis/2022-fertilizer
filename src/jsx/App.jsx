@@ -124,7 +124,9 @@ class App extends Component {
     // Create bar info.
     this.createBarInfo(data);
     // Create interactive layer.
-    this.createInteractiveLayer(data);
+    setTimeout(() => {
+      this.createInteractiveLayer(data);
+    }, 13000);
     // Create line legend.
     // this.createLineLegend();
   }
