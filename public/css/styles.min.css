@@ -53,13 +53,21 @@ body {
   text-transform: uppercase;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_container___niuZu {
+  align-items: center;
   background-color: rgba(255, 255, 255, 0.9);
   background-position: center center;
   background-size: cover;
   border-radius: 50%;
   box-shadow: 0px 0px 20px 2px rgba(0, 0, 0, 0.15) inset;
-  filter: blur(2px);
+  display: flex;
+  margin: auto auto;
   position: fixed;
+  text-align: center;
+}
+.app___2khK2 .chart_container___3Jzlm svg .center_container___niuZu img {
+  height: 125px;
+  margin: auto auto;
+  width: 125px;
 }
 .app___2khK2 .chart_container___3Jzlm svg .center_text___12SXS {
   fill: #000;
