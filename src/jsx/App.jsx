@@ -131,8 +131,8 @@ class App extends Component {
       // Create interactive layer.
       this.createInteractiveLayer(data);
       // Create line legend.
-    }, 13000);
       this.createLineLegend();
+    }, 13000);
   }
   createCenterContainer() {
     const center_diameter = 150;
