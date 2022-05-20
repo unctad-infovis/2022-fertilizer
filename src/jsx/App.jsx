@@ -336,33 +336,33 @@ class App extends Component {
       .html('fertilizer imports');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[220, 825],[353, 665]]))
+      .attr('d', d3.line()([[160, 825],[353, 665]]))
       .attr('stroke', 'rgba(174, 162, 154, 0.8)')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow2)')
       .attr('fill', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[200, 825],[285, 590]]))
+      .attr('d', d3.line()([[150, 825],[285, 590]]))
       .attr('stroke', 'rgba(174, 162, 154, 0.8)')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow2)')
       .attr('fill', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('text')
-      .attr('transform', 'translate(100, 850)rotate(0)')
+      .attr('transform', 'translate(50, 850)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
       .html('In Latin America');
     chart_elements.append('text')
-      .attr('transform', 'translate(100, 870)rotate(0)')
+      .attr('transform', 'translate(50, 870)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
       .html('farmers are');
     chart_elements.append('text')
-      .attr('transform', 'translate(100, 890)rotate(0)')
+      .attr('transform', 'translate(50, 890)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
