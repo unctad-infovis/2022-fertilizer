@@ -7,8 +7,8 @@ body {
   background-color: #fff;
   font-family: 'Roboto';
   height: 100vh;
-  margin: auto auto;
   position: relative;
+  width: 960px;
 }
 .app___2khK2 .tooltip___MFNHN {
   background-color: rgba(255, 255, 255, 0.9);
