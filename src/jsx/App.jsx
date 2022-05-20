@@ -12,14 +12,17 @@ import fertilizer_img from './../../media/img/fertilizer.png';
 
 const scaleMax = 2.8,
       scaleMin = 1,
-      f = chroma.scale(['#DED9D5', '#009edb']).domain([scaleMax, scaleMin]);
-const margin = {top: 0, right: 0, bottom: 0, left: 0},
+      // f = chroma.scale(['#ded9d5', '#009edb']).domain([scaleMax, scaleMin]);
+      f = chroma.scale(['#ded9d5', '#ded9d5', '#C5DFEF', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
+const margin = {top: 50, right: 300, bottom: 100, left: 300},
       inner_radius = 0,
       outer_radius = 300,
       my_domain = [0, 0.2],
-      legend_ring_points = [0.05, 0.1, 0.15, 0.2],
-      height = (window.innerHeight > window.innerWidth) ? window.innerWidth - margin.left - margin.right : window.innerHeight - margin.left - margin.right,
-      width = (window.innerHeight > window.innerWidth) ? window.innerHeight - margin.top - margin.bottom : window.innerWidth - margin.top - margin.bottom;
+      legend_ring_points = [0.1, 0.15, 0.2],
+      // height = (window.innerHeight > window.innerWidth) ? window.innerWidth - margin.left - margin.right : window.innerHeight - margin.left - margin.right,
+      // width = (window.innerHeight > window.innerWidth) ? window.innerHeight - margin.top - margin.bottom : window.innerWidth - margin.top - margin.bottom;
+      height = window.innerHeight - margin.top - margin.bottom,
+      width = window.innerWidth - margin.left - margin.right;
 
 const may_push = 0.49;
 const x = d3.scaleBand()
@@ -65,18 +68,17 @@ class App extends Component {
     });
   }
   createRadialChart(data) {
-    // Define contants.
     // Create the svg.
     const svg = d3.select('.' + style.chart_container)
       .append('svg')
       .attr('preserveAspectRatio', 'xMinYMin meet')
-      .attr('viewBox', '-0 -0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
+      .attr('viewBox', -margin.left + ' ' + -margin.top + ' ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
       .classed('svg-content', true);
 
     // Svg chart container.
     chart_elements = svg.append('g')
       .attr('class', style.chart_elements)
-      .attr('transform', 'translate(0, ' + margin.top + ')');
+      .attr('transform', 'translate(-20, 50)');
 
     chart_elements.append('g')
       .attr('class', 'months_arcs1')
@@ -87,16 +89,16 @@ class App extends Component {
       .attr('d',  d3.arc().innerRadius(0).outerRadius(300))
       .style('fill', (d) => {
         if (d.index === 4) {
-          return 'rgba(197, 223, 239, 0.8)';
+          return 'rgba(197, 223, 239, 0.0)';
         }
         if (d.index === 6) {
-          return 'rgba(197, 223, 239, 0.6)';
+          return 'rgba(197, 223, 239, 0.0)';
         }
         if (d.index === 8) {
-          return 'rgba(197, 223, 239, 0.4)';
+          return 'rgba(197, 223, 239, 0.0)';
         }
         if (d.index === 10) {
-          return 'rgba(197, 223, 239, 0.2)';
+          return 'rgba(197, 223, 239, 0.0)';
         }
         else {
           return 'transparent';
@@ -125,12 +127,12 @@ class App extends Component {
     this.createRadialRings();
     // Create bar info.
     this.createBarInfo(data);
-    // Create interactive layer.
     setTimeout(() => {
+      // Create interactive layer.
       this.createInteractiveLayer(data);
+      // Create line legend.
     }, 13000);
-    // Create line legend.
-    // this.createLineLegend();
+      this.createLineLegend();
   }
   createCenterContainer() {
     const center_diameter = 150;
@@ -178,7 +180,7 @@ class App extends Component {
     chart_legend_rings.selectAll('text')
       .data(legend_ring_points)
       .join('text')
-      .attr('x', d => width / 2 + y(d) + 3)
+      .attr('x', d => width / 2 + y(d) + -10)
       .attr('y', d => height / 2 + 7)
       .text(d => (d === 0.2) ? d * 100 + '% of annual procurement' : d * 100 + '%')
       .style('opacity', 0.7)
@@ -205,10 +207,10 @@ class App extends Component {
           .attr('x', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? -y(my_domain[1]) - 10 : y(my_domain[1]) + 10)
           .attr('y', 0)
           .text(d => d.region)
-          .style('font-weight', d => (d.value > 0.10) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5) ? '#009edb' : (d.concern < 2) ? '#c5dfef' : '#aea29a')
-          .style('font-size', d => (d.concern < 1.5 && d.value > 0.10) ? '16pt' : '11pt')
-          .style('text-transform', d => (d.concern < 1.5 && d.value > 0.10) ? 'uppercase' : 'none')
+          .style('font-weight', d => (d.concern < 2 && d.value > 0.10) ? 700 : 400)
+          .style('fill', d => (d.concern < 1.5) ? '#009edb' : (d.concern < 2) ? '#c5dfef' : 'rgba(174, 162, 154, 0.8)')
+          .style('font-size', d => (d.concern < 2 && d.value > 0.10) ? '16pt' : '11pt')
+          .style('text-transform', d => (d.concern < 2 && d.value > 0.10) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
           .style('opacity', 0)
@@ -275,40 +277,97 @@ class App extends Component {
   createLineLegend() {
     chart_elements.append('defs')
       .append('marker')
-        .attr('id', 'arrow')
-        .attr('refX', 6)
-        .attr('refY', 6)
-        .attr('markerWidth', 30)
-        .attr('markerHeight', 30)
+        .attr('id', 'arrow1')
+        .attr('refX', 10)
+        .attr('refY', 10)
+        .attr('markerWidth', 36)
+        .attr('markerHeight', 36)
         .attr('markerUnits','userSpaceOnUse')
         .attr('orient', 'auto')
-        .attr('fill', '#000')
+        .attr('fill', '#009edb')
       .append('path')
-        .attr('d', 'M 0 0 12 6 0 12 3 6')
-        .attr('fill', '#000')
-        .attr('stroke', '#000');
+        .attr('d', 'M 0 0 20 10 0 20 6 10')
+        .attr('fill', '#009edb')
+        .attr('stroke', '#009edb');
+    chart_elements.append('defs')
+      .append('marker')
+        .attr('id', 'arrow2')
+        .attr('refX', 10)
+        .attr('refY', 10)
+        .attr('markerWidth', 36)
+        .attr('markerHeight', 36)
+        .attr('markerUnits','userSpaceOnUse')
+        .attr('orient', 'auto')
+        .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .append('path')
+        .attr('d', 'M 0 0 20 10 0 20 6 10')
+        .attr('fill', 'rgba(174, 162, 154, 0.8)')
+        .attr('stroke', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[1060, 650], [770, 650]]))
-      .attr('stroke', '#000')
-      .attr('marker-end', 'url(#arrow)')
-      .attr('fill', 'none');
+      .attr('d', d3.line()([[550, 800],[515, 730]]))
+      .attr('stroke', '#009edb')
+      .attr('stroke-width', '5px')
+      .attr('marker-end', 'url(#arrow1)')
+      .attr('fill', '#009edb');
+    chart_elements.append('path')
+      .attr('d', d3.line()([[430, 830],[360, 820]]))
+      .attr('stroke', '#009edb')
+      .attr('stroke-width', '5px')
+      .attr('marker-end', 'url(#arrow1)')
+      .attr('fill', '#009edb');
     chart_elements.append('text')
-      .attr('transform', 'translate(780, 645)rotate(0)')
+      .attr('transform', 'translate(440, 825)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .text('High priority & High demand');
+      .attr('fill', '#009edb')
+      .html('African farmers ');
+    chart_elements.append('text')
+      .attr('transform', 'translate(440, 848)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#009edb')
+      .html('urgently need');
+    chart_elements.append('text')
+      .attr('transform', 'translate(440, 871)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#009edb')
+      .html('fertilizer imports');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[160, 700], [440, 700]]))
-      .attr('stroke', '#000')
-      .attr('marker-end', 'url(#arrow)')
-      .attr('fill', 'none');
+      .attr('d', d3.line()([[-100, 800],[50, 610]]))
+      .attr('stroke', 'rgba(174, 162, 154, 0.8)')
+      .attr('stroke-width', '5px')
+      .attr('marker-end', 'url(#arrow2)')
+      .attr('fill', 'rgba(174, 162, 154, 0.8)');
+
+    chart_elements.append('path')
+      .attr('d', d3.line()([[-110, 795],[-15, 530]]))
+      .attr('stroke', 'rgba(174, 162, 154, 0.8)')
+      .attr('stroke-width', '5px')
+      .attr('marker-end', 'url(#arrow2)')
+      .attr('fill', 'rgba(174, 162, 154, 0.8)');
+
     chart_elements.append('text')
-      .attr('transform', 'translate(160, 695)rotate(0)')
+      .attr('transform', 'translate(-200, 825)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .text('Low priority & High demand');
+      .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .html('In Latin America');
+    chart_elements.append('text')
+      .attr('transform', 'translate(-200, 848)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .html('farmers are');
+    chart_elements.append('text')
+      .attr('transform', 'translate(-200, 871)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .html('better sourced');
+
   }
   createInteractiveLayer(data) {
     // Interactive layer.
@@ -365,7 +424,6 @@ class App extends Component {
     d3.select('.' + style.tooltip)
       .style('opacity', 0)
   }
-
   // shouldComponentUpdate(nextProps, nextState) {}
   // static getDerivedStateFromProps(props, state) {}
   // getSnapshotBeforeUpdate(prevProps, prevState) {}
@@ -375,7 +433,8 @@ class App extends Component {
     return (
       <div className={style.app}>
         <div className={style.heading_container}>
-          <h1>Fertilizer problem is most urgent in Africa</h1>
+          <h1>When farmers buy fertilizer</h1>
+          <h3>In selected regions</h3>
         </div>
         <div className={style.chart_container}></div>
         <div className={style.scales_container}>

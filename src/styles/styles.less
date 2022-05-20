@@ -31,33 +31,16 @@ body {
       padding: 0;
       text-align: center;
     }
+    h3 {
+      font-size: 20pt;
+      line-height: 20pt;
+      margin: 0 0 0 0;
+      padding: 0;
+      text-align: center;
+    }
   }
   .chart_container {
     svg {
-      .title {
-        font-size: 20pt;
-      }
-      .line_container {
-        path {
-          stroke-width: 0.5;
-          stroke: rgba(0, 0, 0, 0.5);
-          &.current_avg_temp_line {
-            fill: none;
-            stroke-width: 1.5;
-          }
-        }
-        .grid {
-          line {
-            stroke-width: 0.5;
-            stroke: rgba(0, 0, 0, 0.5);
-          }
-        }
-        .linegraptext {
-          font-size: 7pt;
-          font-weight: 700;
-          text-transform: uppercase;
-        }
-      }
       .center_container {
         align-items: center;
         background-color: rgba(255, 255, 255, 0.9);
@@ -70,8 +53,8 @@ body {
         position: fixed;
         text-align: center;
         img {
-          margin: auto auto;
           height: 125px;
+          margin: auto auto;
           width: 125px;
         }
       }
@@ -119,20 +102,22 @@ body {
     }
   }
   .scales_container {
-    bottom: 10px;
+    bottom: 5px;
     color: #000;
     font-family: sans-serif;
     font-weight: 400;
-    left: calc(50% - 152px/2);
+    left: calc(50% - 70px);
     opacity: 1;
     position: absolute;
     z-index: 1;
     &:after,
     &:before {
       display: inline-block;
-      font-size: 8pt;
+      font-size: 9pt;
       line-height: 14px;
-      opacity: 0.7;
+      opacity: 1;
+      letter-spacing: 0.02em;
+      font-weight: bold;
       position: absolute;
       text-align: center;
       text-transform: uppercase;
@@ -141,13 +126,13 @@ body {
       width: 28px;
     }
     &:before {
-      content: 'high priority';
-      right: -31px;
+      content: '←needs stock';
+      right: -32px;
       text-align: left;
     }
     &:after {
-      content: 'low priority';
-      left: -80px;
+      content: 'has stock→';
+      left: -92px;
       text-align: right;
     }
     .scale_container {
@@ -166,7 +151,9 @@ body {
     }
   }
   .legend_text {
-    font-size: 14pt;
+    font-size: 16pt;
+    font-weight: bold;
+    letter-spacing: 0.02em;
     text-shadow: 2px 2px 4px #fff;
     text-transform: uppercase;
   }
