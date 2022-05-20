@@ -14,15 +14,15 @@ const scaleMax = 2.8,
       scaleMin = 1,
       // f = chroma.scale(['#ded9d5', '#009edb']).domain([scaleMax, scaleMin]);
       f = chroma.scale(['#ded9d5', '#ded9d5', '#C5DFEF', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
-const margin = {top: 50, right: 300, bottom: 100, left: 300},
+const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
       outer_radius = 300,
       my_domain = [0, 0.2],
       legend_ring_points = [0.1, 0.15, 0.2],
       // height = (window.innerHeight > window.innerWidth) ? window.innerWidth - margin.left - margin.right : window.innerHeight - margin.left - margin.right,
       // width = (window.innerHeight > window.innerWidth) ? window.innerHeight - margin.top - margin.bottom : window.innerWidth - margin.top - margin.bottom;
-      height = window.innerHeight - margin.top - margin.bottom,
-      width = window.innerWidth - margin.left - margin.right;
+      height = 960,
+      width = 960;
 
 const may_push = 0.49;
 const x = d3.scaleBand()
@@ -305,64 +305,64 @@ class App extends Component {
         .attr('stroke', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[550, 800],[515, 730]]))
+      .attr('d', d3.line()([[840, 835],[815, 780]]))
       .attr('stroke', '#009edb')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow1)')
       .attr('fill', '#009edb');
     chart_elements.append('path')
-      .attr('d', d3.line()([[430, 830],[360, 820]]))
+      .attr('d', d3.line()([[730, 870],[660, 865]]))
       .attr('stroke', '#009edb')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow1)')
       .attr('fill', '#009edb');
     chart_elements.append('text')
-      .attr('transform', 'translate(440, 825)rotate(0)')
+      .attr('transform', 'translate(740, 860)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', '#009edb')
       .html('African farmers ');
     chart_elements.append('text')
-      .attr('transform', 'translate(440, 848)rotate(0)')
+      .attr('transform', 'translate(740, 880)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', '#009edb')
       .html('urgently need');
     chart_elements.append('text')
-      .attr('transform', 'translate(440, 871)rotate(0)')
+      .attr('transform', 'translate(740, 900)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', '#009edb')
       .html('fertilizer imports');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[-100, 800],[50, 610]]))
+      .attr('d', d3.line()([[220, 825],[353, 665]]))
       .attr('stroke', 'rgba(174, 162, 154, 0.8)')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow2)')
       .attr('fill', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('path')
-      .attr('d', d3.line()([[-110, 795],[-15, 530]]))
+      .attr('d', d3.line()([[200, 825],[285, 590]]))
       .attr('stroke', 'rgba(174, 162, 154, 0.8)')
       .attr('stroke-width', '5px')
       .attr('marker-end', 'url(#arrow2)')
       .attr('fill', 'rgba(174, 162, 154, 0.8)');
 
     chart_elements.append('text')
-      .attr('transform', 'translate(-200, 825)rotate(0)')
+      .attr('transform', 'translate(100, 850)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
       .html('In Latin America');
     chart_elements.append('text')
-      .attr('transform', 'translate(-200, 848)rotate(0)')
+      .attr('transform', 'translate(100, 870)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
       .html('farmers are');
     chart_elements.append('text')
-      .attr('transform', 'translate(-200, 871)rotate(0)')
+      .attr('transform', 'translate(100, 890)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(174, 162, 154, 0.8)')
