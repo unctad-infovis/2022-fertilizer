@@ -5,8 +5,11 @@ body {
 }
 .app___2khK2 {
   background-color: #fff;
+  border: 1px solid #000;
+  box-sizing: border-box;
   font-family: 'Roboto';
   height: 100vh;
+  overflow: hidden;
   position: relative;
   width: 960px;
 }
@@ -100,7 +103,7 @@ body {
   color: #000;
   font-family: sans-serif;
   font-weight: 400;
-  left: calc(50% - 70px);
+  left: calc(50% - 100px);
   opacity: 1;
   position: absolute;
   z-index: 1;
