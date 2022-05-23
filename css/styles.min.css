@@ -11,7 +11,8 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  width: 960px;
+  width: 900px;
+  height: 830px;
 }
 .app___2khK2 .tooltip___MFNHN {
   background-color: rgba(255, 255, 255, 0.9);
@@ -23,10 +24,10 @@ body {
   z-index: 3;
 }
 .app___2khK2 .heading_container___jzq9M {
+  color: #000;
+  font-family: 'Roboto Serif';
   position: absolute;
   width: 100%;
-  text-transform: uppercase;
-  color: #009edb;
 }
 .app___2khK2 .heading_container___jzq9M h1 {
   font-size: 26pt;
@@ -103,7 +104,7 @@ body {
   color: #000;
   font-family: sans-serif;
   font-weight: 400;
-  left: calc(50% - 100px);
+  left: calc(50% - 90px);
   opacity: 1;
   position: absolute;
   z-index: 1;
@@ -124,13 +125,13 @@ body {
   width: 28px;
 }
 .app___2khK2 .scales_container___1pYId:before {
-  content: '←needs stock';
+  content: '←needs supplies';
   right: -32px;
   text-align: left;
 }
 .app___2khK2 .scales_container___1pYId:after {
-  content: 'has stock→';
-  left: -92px;
+  content: 'has supplies→';
+  left: -110px;
   text-align: right;
 }
 .app___2khK2 .scales_container___1pYId .scale_container___3Z0k5 {
@@ -148,11 +149,12 @@ body {
   text-align: center;
 }
 .app___2khK2 .legend_text___naI0q {
-  font-size: 16pt;
+  font-size: 20pt;
   font-weight: bold;
-  letter-spacing: 0.02em;
   text-shadow: 2px 2px 4px #fff;
-  text-transform: uppercase;
+}
+.app___2khK2 .legend_text___naI0q tspan {
+  fill: #f00;
 }
 /* General styles */
 .clearfix___1yHqr {
