@@ -112,7 +112,7 @@ body {
 .app___2khK2 .scales_container___1pYId:after,
 .app___2khK2 .scales_container___1pYId:before {
   display: inline-block;
-  font-size: 9pt;
+  font-size: 10pt;
   line-height: 14px;
   opacity: 1;
   letter-spacing: 0.02em;
@@ -120,7 +120,7 @@ body {
   position: absolute;
   text-align: center;
   text-transform: uppercase;
-  top: 3px;
+  top: 4px;
   white-space: nowrap;
   width: 28px;
 }
@@ -131,7 +131,7 @@ body {
 }
 .app___2khK2 .scales_container___1pYId:after {
   content: 'has supplies→';
-  left: -110px;
+  left: -120px;
   text-align: right;
 }
 .app___2khK2 .scales_container___1pYId .scale_container___3Z0k5 {
@@ -151,10 +151,14 @@ body {
 .app___2khK2 .legend_text___naI0q {
   font-size: 20pt;
   font-weight: bold;
-  text-shadow: 2px 2px 4px #fff;
 }
 .app___2khK2 .legend_text___naI0q tspan {
   fill: #f00;
+}
+button {
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 /* General styles */
 .clearfix___1yHqr {
