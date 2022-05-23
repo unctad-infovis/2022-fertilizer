@@ -218,7 +218,7 @@ class App extends Component {
           .attr('y', 0)
           .text(d => d.region)
           .style('font-weight', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '#009edb' :(d.concern < 2 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') && d.value > 0.10) ? '#c5dfef' : '#ded9d5')
+          .style('fill', d => (d.concern < 1.5 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '#009edb' :(d.concern < 2 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') && d.value > 0.10) ? '#c5dfef' : '#7C7067')
           .style('font-size', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '16pt' : '11pt')
           .style('text-transform', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
@@ -326,114 +326,119 @@ class App extends Component {
         .attr('d', 'M 0 0 20 10 0 20 6 10')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .attr('stroke', 'rgba(0, 0, 0, 1)');
-
     // Africa
-    chart_elements.append('path')
-      .attr('d', d3.line()([[930, 870],[885, 810]]))
-      .attr('stroke', 'rgba(0, 0, 0, 1)')
-      .attr('class', style.legend_path)
-      .attr('stroke-width', '3px')
-      .attr('stroke-dasharray', '5,5')
-      .attr('marker-end', 'url(#arrow1)');
-    chart_elements.append('path')
-      .attr('d', d3.line()([[830, 920],[740, 910]]))
-      .attr('class', style.legend_path)
-      .attr('stroke', 'rgba(0, 0, 0, 1)')
-      .attr('stroke-width', '3px')
-      .attr('stroke-dasharray', '5,5')
-      .attr('marker-end', 'url(#arrow1)');
-    chart_elements.append('text')
-      .attr('transform', 'translate(840, 900)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('African farmers');
-    chart_elements.append('text')
-      .attr('transform', 'translate(840, 925)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('<tspan>urgently</tspan> need');
-    chart_elements.append('text')
-      .attr('transform', 'translate(840, 954)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('fertilizer imports');
+    setTimeout(() => {
+      chart_elements.append('path')
+        .attr('d', d3.line()([[930, 870],[885, 810]]))
+        .attr('stroke', 'rgba(0, 0, 0, 1)')
+        .attr('class', style.legend_path)
+        .attr('stroke-width', '3px')
+        .attr('stroke-dasharray', '5,5')
+        .attr('marker-end', 'url(#arrow1)');
+      chart_elements.append('path')
+        .attr('d', d3.line()([[830, 920],[740, 910]]))
+        .attr('class', style.legend_path)
+        .attr('stroke', 'rgba(0, 0, 0, 1)')
+        .attr('stroke-width', '3px')
+        .attr('stroke-dasharray', '5,5')
+        .attr('marker-end', 'url(#arrow1)');
+      chart_elements.append('text')
+        .attr('transform', 'translate(840, 900)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('African farmers');
+      chart_elements.append('text')
+        .attr('transform', 'translate(840, 925)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('<tspan>urgently</tspan> need');
+      chart_elements.append('text')
+        .attr('transform', 'translate(840, 954)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('fertilizer imports');
+    }, 500);
 
     // Latin America
-    chart_elements.append('path')
-      .attr('d', d3.line()([[160, 820],[415, 680]]))
-      .attr('stroke', 'rgba(0, 0, 0, 1)')
-      .attr('class', style.legend_path)
-      .attr('stroke-width', '3px')
-      .attr('stroke-dasharray', '5,5')
-      .attr('marker-end', 'url(#arrow2)');
-    chart_elements.append('path')
-      .attr('d', d3.line()([[150, 820],[402, 525]]))
-      .attr('stroke', 'rgba(0, 0, 0, 1)')
-      .attr('class', style.legend_path)
-      .attr('stroke-width', '3px')
-      .attr('stroke-dasharray', '5,5')
-      .attr('marker-end', 'url(#arrow2)');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 850)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('In Latin America');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 875)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .style('font-family', 'Roboto')
-      .html('and Southeast Asia');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 900)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('farmers appear');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 925)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(0, 0, 0, 1)')
-      .html('better sourced');
+    setTimeout(() => {
+      chart_elements.append('path')
+        .attr('d', d3.line()([[160, 820],[415, 680]]))
+        .attr('stroke', 'rgba(0, 0, 0, 1)')
+        .attr('class', style.legend_path)
+        .attr('stroke-width', '3px')
+        .attr('stroke-dasharray', '5,5')
+        .attr('marker-end', 'url(#arrow2)');
+      chart_elements.append('path')
+        .attr('d', d3.line()([[150, 820],[402, 525]]))
+        .attr('stroke', 'rgba(0, 0, 0, 1)')
+        .attr('class', style.legend_path)
+        .attr('stroke-width', '3px')
+        .attr('stroke-dasharray', '5,5')
+        .attr('marker-end', 'url(#arrow2)');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 850)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('In Latin America');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 875)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .style('font-family', 'Roboto')
+        .html('and Southeast Asia');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 900)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('farmers appear');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 925)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .html('better sourced');
+    }, 2000);
 
     // South Asia
-    chart_elements.append('path')
-      .attr('d', d3.line()([[170, 240],[265, 390]]))
-      .attr('stroke', 'rgba(0, 0, 0, 1)')
-      .attr('class', style.legend_path)
-      .attr('stroke-width', '3px')
-      .attr('stroke-dasharray', '5,5')
-      .attr('marker-end', 'url(#arrow3)');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 150)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', '#000')
-      .html('In South Asia');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 175)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', '#000')
-      .html('some countries');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 200)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', '#000')
-      .html('may face challenges');
-    chart_elements.append('text')
-      .attr('transform', 'translate(50, 225)rotate(0)')
-      .attr('class', style.legend_text)
-      .attr('text-anchor', 'start')
-      .attr('fill', '#000')
-      .html('later this year');
+    setTimeout(() => {
+      chart_elements.append('path')
+        .attr('d', d3.line()([[170, 240],[265, 390]]))
+        .attr('stroke', 'rgba(0, 0, 0, 1)')
+        .attr('class', style.legend_path)
+        .attr('stroke-width', '3px')
+        .attr('stroke-dasharray', '5,5')
+        .attr('marker-end', 'url(#arrow3)');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 150)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', '#000')
+        .html('In South Asia');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 175)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', '#000')
+        .html('some countries');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 200)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', '#000')
+        .html('may face challenges');
+      chart_elements.append('text')
+        .attr('transform', 'translate(50, 225)rotate(0)')
+        .attr('class', style.legend_text)
+        .attr('text-anchor', 'start')
+        .attr('fill', '#000')
+        .html('later this year');
+    }, 4000);
   }
   createInteractiveLayer(data) {
     // Interactive layer.

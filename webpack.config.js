@@ -72,6 +72,9 @@ module.exports = {
         family: 'Roboto Serif',
         variants: ['400','700']
       },{
+        family: 'Roboto Condensed',
+        variants: ['400','700']
+      },{
         family: 'Roboto',
         variants: ['400','700']
       }]
