@@ -69,6 +69,9 @@ module.exports = {
   plugins: [
     new GoogleFontsPlugin({
       fonts: [{
+        family: 'Roboto Serif',
+        variants: ['400','700']
+      },{
         family: 'Roboto',
         variants: ['400','700']
       }]

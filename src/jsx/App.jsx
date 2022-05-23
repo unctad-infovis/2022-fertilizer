@@ -13,7 +13,7 @@ import fertilizer_img from './../../media/img/fertilizer.png';
 const scaleMax = 2.8,
       scaleMin = 1,
       // f = chroma.scale(['#ded9d5', '#009edb']).domain([scaleMax, scaleMin]);
-      f = chroma.scale(['#ded9d5', '#ded9d5', '#C5DFEF', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
+      f = chroma.scale(['#ded9d5', '#ded9d5', '#c5dfef', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
 const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
       outer_radius = 300,
@@ -21,8 +21,8 @@ const margin = {top: 0, right: 0, bottom: 0, left: 0},
       legend_ring_points = [0.1, 0.15, 0.2],
       // height = (window.innerHeight > window.innerWidth) ? window.innerWidth - margin.left - margin.right : window.innerHeight - margin.left - margin.right,
       // width = (window.innerHeight > window.innerWidth) ? window.innerHeight - margin.top - margin.bottom : window.innerWidth - margin.top - margin.bottom;
-      height = 960,
-      width = 960;
+      height = 1000,
+      width = 1100;
 
 const may_push = 0.49;
 const x = d3.scaleBand()
@@ -71,14 +71,14 @@ class App extends Component {
     // Create the svg.
     const svg = d3.select('.' + style.chart_container)
       .append('svg')
-      .attr('preserveAspectRatio', 'xMinYMin meet')
+      // .attr('preserveAspectRatio', 'xMinYMin meet')
       .attr('viewBox', -margin.left + ' ' + -margin.top + ' ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
       .classed('svg-content', true);
 
     // Svg chart container.
     chart_elements = svg.append('g')
       .attr('class', style.chart_elements)
-      .attr('transform', 'translate(-20, 50)');
+      .attr('transform', 'translate(-20, 0)');
 
     chart_elements.append('g')
       .attr('class', 'months_arcs1')
@@ -89,16 +89,16 @@ class App extends Component {
       .attr('d',  d3.arc().innerRadius(0).outerRadius(300))
       .style('fill', (d) => {
         if (d.index === 4) {
-          return 'rgba(197, 223, 239, 0.0)';
+          return 'rgba(197, 223, 239, 0.2)';
         }
         if (d.index === 6) {
-          return 'rgba(197, 223, 239, 0.0)';
+          return 'rgba(197, 223, 239, 0.2)';
         }
         if (d.index === 8) {
-          return 'rgba(197, 223, 239, 0.0)';
+          return 'rgba(197, 223, 239, 0.2)';
         }
         if (d.index === 10) {
-          return 'rgba(197, 223, 239, 0.0)';
+          return 'rgba(197, 223, 239, 0.2)';
         }
         else {
           return 'transparent';
@@ -150,7 +150,7 @@ class App extends Component {
       .selectAll('path')
       .data(data).enter()
       .append('path')
-      .attr('fill', d => f(d['concern']))
+      .attr('fill', d => ((d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') ? f(d['concern']) : f(d['concern'])))
       .attr('data-id', d => d.region)
       .attr('d', d3.arc()
         .innerRadius(d => y(my_domain[0]))
@@ -162,7 +162,7 @@ class App extends Component {
       .transition()
       .duration(30)
       .delay(d => d.delay_multiplier2 * 30 + d.delay_multiplier * 1000)
-      .style('opacity', 1)
+      .style('opacity', d => ((d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') ? 1 : 1))
       .style('pointer-events', 'none');
   }
   createRadialRings() {
@@ -183,8 +183,8 @@ class App extends Component {
       .attr('x', d => width / 2 + y(d) + -10)
       .attr('y', d => height / 2 + 7)
       .text(d => (d === 0.2) ? d * 100 + '% of annual procurement' : d * 100 + '%')
-      .style('opacity', 0.7)
-      .style('font-size', d => (d === 0) ? '11pt' : '11pt')
+      .style('opacity', 1)
+      .style('font-size', d => (d === 0) ? '13pt' : '13pt')
       .style('font-weight', d => (d === 0) ? 700 : 700)
       .style('pointer-events', 'none');
   }
@@ -207,10 +207,10 @@ class App extends Component {
           .attr('x', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? -y(my_domain[1]) - 10 : y(my_domain[1]) + 10)
           .attr('y', 0)
           .text(d => d.region)
-          .style('font-weight', d => (d.concern < 2 && d.value > 0.10) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5) ? '#009edb' : (d.concern < 2) ? '#c5dfef' : 'rgba(174, 162, 154, 0.8)')
-          .style('font-size', d => (d.concern < 2 && d.value > 0.10) ? '16pt' : '11pt')
-          .style('text-transform', d => (d.concern < 2 && d.value > 0.10) ? 'uppercase' : 'none')
+          .style('font-weight', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 700 : 400)
+          .style('fill', d => (d.concern < 1.5 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '#009edb' :(d.concern < 2 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') && d.value > 0.10) ? '#c5dfef' : '#ded9d5')
+          .style('font-size', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '16pt' : '11pt')
+          .style('text-transform', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
           .attr('transform', d => (x(d.id) + x.bandwidth() / 2 + Math.PI) % (2 * Math.PI) < Math.PI ? 'rotate(180)' : 'rotate(0)')
           .style('opacity', 0)
@@ -268,9 +268,8 @@ class App extends Component {
       .append('textPath')
       .attr('startOffset', '50%')
       .style('text-anchor', 'middle')
-      .style('fill', (d) => {
-        return (d.index === 4) ? '#009edb' : '#6e6259';
-      })
+      .style('fill', d => (d.index === 4 || d.index === 6 || d.index === 8 || d.index === 10) ? '#009edb' : '#6e6259')
+      .style('font-weight', d => (d.index === 4 || d.index === 6 || d.index === 8 || d.index === 10) ? 700 : 400)
       .attr('xlink:href', (d, i) => '#months_arc' + i)
       .text((d) => d.data.name);
   }
@@ -284,11 +283,11 @@ class App extends Component {
         .attr('markerHeight', 36)
         .attr('markerUnits','userSpaceOnUse')
         .attr('orient', 'auto')
-        .attr('fill', '#009edb')
+        .attr('fill', '#000')
       .append('path')
         .attr('d', 'M 0 0 20 10 0 20 6 10')
-        .attr('fill', '#009edb')
-        .attr('stroke', '#009edb');
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .attr('stroke', 'rgba(0, 0, 0, 1)');
     chart_elements.append('defs')
       .append('marker')
         .attr('id', 'arrow2')
@@ -298,76 +297,127 @@ class App extends Component {
         .attr('markerHeight', 36)
         .attr('markerUnits','userSpaceOnUse')
         .attr('orient', 'auto')
-        .attr('fill', 'rgba(174, 162, 154, 0.8)')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
       .append('path')
         .attr('d', 'M 0 0 20 10 0 20 6 10')
-        .attr('fill', 'rgba(174, 162, 154, 0.8)')
-        .attr('stroke', 'rgba(174, 162, 154, 0.8)');
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .attr('stroke', 'rgba(0, 0, 0, 1)');
+    chart_elements.append('defs')
+      .append('marker')
+        .attr('id', 'arrow3')
+        .attr('refX', 10)
+        .attr('refY', 10)
+        .attr('markerWidth', 36)
+        .attr('markerHeight', 36)
+        .attr('markerUnits','userSpaceOnUse')
+        .attr('orient', 'auto')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+      .append('path')
+        .attr('d', 'M 0 0 20 10 0 20 6 10')
+        .attr('fill', 'rgba(0, 0, 0, 1)')
+        .attr('stroke', 'rgba(0, 0, 0, 1)');
 
+    // Africa
     chart_elements.append('path')
-      .attr('d', d3.line()([[840, 835],[815, 780]]))
-      .attr('stroke', '#009edb')
-      .attr('stroke-width', '5px')
-      .attr('marker-end', 'url(#arrow1)')
-      .attr('fill', '#009edb');
+      .attr('d', d3.line()([[930, 870],[885, 810]]))
+      .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('stroke-width', '3px')
+      .attr('stroke-dasharray', '5,5')
+      .attr('marker-end', 'url(#arrow1)');
     chart_elements.append('path')
-      .attr('d', d3.line()([[730, 870],[660, 865]]))
-      .attr('stroke', '#009edb')
-      .attr('stroke-width', '5px')
-      .attr('marker-end', 'url(#arrow1)')
-      .attr('fill', '#009edb');
+      .attr('d', d3.line()([[830, 920],[740, 910]]))
+      .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('stroke-width', '3px')
+      .attr('stroke-dasharray', '5,5')
+      .attr('marker-end', 'url(#arrow1)');
     chart_elements.append('text')
-      .attr('transform', 'translate(740, 860)rotate(0)')
+      .attr('transform', 'translate(840, 900)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', '#009edb')
-      .html('African farmers ');
+      .attr('fill', 'rgba(0, 0, 0, 1)')
+      .html('African farmers');
     chart_elements.append('text')
-      .attr('transform', 'translate(740, 880)rotate(0)')
+      .attr('transform', 'translate(840, 925)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', '#009edb')
-      .html('urgently need');
+      .attr('fill', 'rgba(0, 0, 0, 1)')
+      .html('<tspan>urgently</tspan> need');
     chart_elements.append('text')
-      .attr('transform', 'translate(740, 900)rotate(0)')
+      .attr('transform', 'translate(840, 954)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', '#009edb')
+      .attr('fill', 'rgba(0, 0, 0, 1)')
       .html('fertilizer imports');
 
+    // Latin America
     chart_elements.append('path')
-      .attr('d', d3.line()([[160, 825],[353, 665]]))
-      .attr('stroke', 'rgba(174, 162, 154, 0.8)')
-      .attr('stroke-width', '5px')
-      .attr('marker-end', 'url(#arrow2)')
-      .attr('fill', 'rgba(174, 162, 154, 0.8)');
-
+      .attr('d', d3.line()([[160, 820],[415, 680]]))
+      .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('stroke-width', '3px')
+      .attr('stroke-dasharray', '5,5')
+      .attr('marker-end', 'url(#arrow2)');
     chart_elements.append('path')
-      .attr('d', d3.line()([[150, 825],[285, 590]]))
-      .attr('stroke', 'rgba(174, 162, 154, 0.8)')
-      .attr('stroke-width', '5px')
-      .attr('marker-end', 'url(#arrow2)')
-      .attr('fill', 'rgba(174, 162, 154, 0.8)');
-
+      .attr('d', d3.line()([[150, 820],[402, 525]]))
+      .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('stroke-width', '3px')
+      .attr('stroke-dasharray', '5,5')
+      .attr('marker-end', 'url(#arrow2)');
     chart_elements.append('text')
       .attr('transform', 'translate(50, 850)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .attr('fill', 'rgba(0, 0, 0, 1)')
       .html('In Latin America');
     chart_elements.append('text')
-      .attr('transform', 'translate(50, 870)rotate(0)')
+      .attr('transform', 'translate(50, 875)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(174, 162, 154, 0.8)')
-      .html('farmers are');
+      .attr('fill', 'rgba(0, 0, 0, 1)')
+      .html('and Southeast Asia');
     chart_elements.append('text')
-      .attr('transform', 'translate(50, 890)rotate(0)')
+      .attr('transform', 'translate(50, 900)rotate(0)')
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
-      .attr('fill', 'rgba(174, 162, 154, 0.8)')
+      .attr('fill', 'rgba(0, 0, 0, 1)')
+      .html('farmers appear');
+    chart_elements.append('text')
+      .attr('transform', 'translate(50, 925)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', 'rgba(0, 0, 0, 1)')
       .html('better sourced');
 
+    // South Asia
+    chart_elements.append('path')
+      .attr('d', d3.line()([[170, 240],[265, 390]]))
+      .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('stroke-width', '3px')
+      .attr('stroke-dasharray', '5,5')
+      .attr('marker-end', 'url(#arrow3)');
+    chart_elements.append('text')
+      .attr('transform', 'translate(50, 150)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#000')
+      .html('In South Asia');
+    chart_elements.append('text')
+      .attr('transform', 'translate(50, 175)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#000')
+      .html('some countries');
+    chart_elements.append('text')
+      .attr('transform', 'translate(50, 200)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#000')
+      .html('may face challenges');
+    chart_elements.append('text')
+      .attr('transform', 'translate(50, 225)rotate(0)')
+      .attr('class', style.legend_text)
+      .attr('text-anchor', 'start')
+      .attr('fill', '#000')
+      .html('later this year');
   }
   createInteractiveLayer(data) {
     // Interactive layer.
@@ -398,13 +448,13 @@ class App extends Component {
     if (d.region !== '') {
       d3.select('.' + style.bars_container)
         .selectAll('path:not(path[data-id="' + d.region + '"])')
-        .style('opacity', 0.2);
+        .style('opacity', 0.0);
       d3.select('.' + style.bars_info_container)
         .select('text[data-id="' + d.region + '"]')
         .style('opacity', 1);
       d3.select('.' + style.bars_info_container)
         .selectAll('text:not(text[data-id="' + d.region + '"])')
-        .style('opacity', 0.2);
+        .style('opacity', 0.0);
       d3.select(event.currentTarget).style('opacity', 1);
       d3.select('.' + style.tooltip)
         .style('left', (event.pageX + 20) + 'px')
@@ -434,7 +484,6 @@ class App extends Component {
       <div className={style.app}>
         <div className={style.heading_container}>
           <h1>When farmers buy fertilizer</h1>
-          <h3>In selected regions</h3>
         </div>
         <div className={style.chart_container}></div>
         <div className={style.scales_container}>

@@ -12,7 +12,8 @@ body {
   height: 100vh;
   overflow: hidden;
   position: relative;
-  width: 960px;
+  width: 900px;
+  height: 830px;
   .tooltip {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ccc;
@@ -23,10 +24,10 @@ body {
     z-index: 3;
   }
   .heading_container {
+    color: #000;
+    font-family: 'Roboto Serif';
     position: absolute;
     width: 100%;
-    text-transform: uppercase;
-    color: #009edb;
     h1 {
       font-size: 26pt;
       line-height: 26pt;
@@ -109,7 +110,7 @@ body {
     color: #000;
     font-family: sans-serif;
     font-weight: 400;
-    left: calc(50% - 100px);
+    left: calc(50% - 90px);
     opacity: 1;
     position: absolute;
     z-index: 1;
@@ -129,13 +130,13 @@ body {
       width: 28px;
     }
     &:before {
-      content: '←needs stock';
+      content: '←needs supplies';
       right: -32px;
       text-align: left;
     }
     &:after {
-      content: 'has stock→';
-      left: -92px;
+      content: 'has supplies→';
+      left: -110px;
       text-align: right;
     }
     .scale_container {
@@ -154,11 +155,12 @@ body {
     }
   }
   .legend_text {
-    font-size: 16pt;
+    font-size: 20pt;
     font-weight: bold;
-    letter-spacing: 0.02em;
     text-shadow: 2px 2px 4px #fff;
-    text-transform: uppercase;
+    tspan {
+      fill: #f00;
+    }
   }
 }
 
