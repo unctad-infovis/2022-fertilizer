@@ -28,6 +28,36 @@
 		url("./font/Roboto-Bold.svg") format("svg");
 }
 
+/* === Roboto Condensed - regular */
+@font-face {
+	font-family: 'Roboto Condensed';
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("./font/RobotoCondensed-Regular.eot");
+	src: local('Roboto Condensed'),
+		url("./font/RobotoCondensed-Regular.eot") format("embedded-opentype"),
+		url("./font/RobotoCondensed-Regular.woff2") format("woff2"),
+		url("./font/RobotoCondensed-Regular.woff") format("woff"),
+		url("./font/RobotoCondensed-Regular.ttf") format("truetype"),
+		url("./font/RobotoCondensed-Regular.svg") format("svg");
+}
+
+/* === Roboto Condensed - 700 */
+@font-face {
+	font-family: 'Roboto Condensed';
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("./font/RobotoCondensed-Bold.eot");
+	src: local('Roboto Condensed'),
+		url("./font/RobotoCondensed-Bold.eot") format("embedded-opentype"),
+		url("./font/RobotoCondensed-Bold.woff2") format("woff2"),
+		url("./font/RobotoCondensed-Bold.woff") format("woff"),
+		url("./font/RobotoCondensed-Bold.ttf") format("truetype"),
+		url("./font/RobotoCondensed-Bold.svg") format("svg");
+}
+
 /* === Roboto Serif - regular */
 @font-face {
 	font-family: 'Roboto Serif';
