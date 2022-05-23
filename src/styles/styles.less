@@ -1,4 +1,6 @@
-// @import url('https://fonts.googleapis.com/css?family=Lato:300,400,700.css');
+// @import url('https://fonts.googleapis.com/css?family=Roboto+Serif:400,700.css');
+// @import url('https://fonts.googleapis.com/css?family=Roboto:400,700.css');
+
 html,
 body {
   margin: 0;
@@ -117,7 +119,7 @@ body {
     &:after,
     &:before {
       display: inline-block;
-      font-size: 9pt;
+      font-size: 10pt;
       line-height: 14px;
       opacity: 1;
       letter-spacing: 0.02em;
@@ -125,7 +127,7 @@ body {
       position: absolute;
       text-align: center;
       text-transform: uppercase;
-      top: 3px;
+      top: 4px;
       white-space: nowrap;
       width: 28px;
     }
@@ -136,7 +138,7 @@ body {
     }
     &:after {
       content: 'has supplies→';
-      left: -110px;
+      left: -120px;
       text-align: right;
     }
     .scale_container {
@@ -155,13 +157,22 @@ body {
     }
   }
   .legend_text {
+    // display: none;
     font-size: 20pt;
     font-weight: bold;
-    text-shadow: 2px 2px 4px #fff;
     tspan {
       fill: #f00;
     }
   }
+  .legend_path {
+    // display: none;
+  }
+}
+
+button {
+  position: fixed;
+  right: 0;
+  top: 0;
 }
 
 @import 'basics.less';

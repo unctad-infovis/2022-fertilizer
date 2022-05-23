@@ -34,6 +34,7 @@
   "dependencies": {
     "@beyonk/google-fonts-webpack-plugin": "^1.7.0",
     "chroma-js": "^2.1.2",
-    "d3": "^7.0.0"
+    "d3": "^7.0.0",
+    "d3-save-svg": "^0.0.2"
   }
 }

@@ -6,6 +6,10 @@ import * as d3 from 'd3';
 
 // https://vis4.net/chromajs/
 import chroma from 'chroma-js';
+
+// https://github.com/edeno/d3-save-svg
+import d3_save_svg from 'd3-save-svg';
+
 // Use chroma to make the color scale.
 // https://gka.github.io/chroma.js/
 import fertilizer_img from './../../media/img/fertilizer.png';
@@ -133,6 +137,12 @@ class App extends Component {
       // Create line legend.
       this.createLineLegend();
     }, 13000);
+    d3.select('button#export').on('click', function() {
+    var config = {
+      filename: 'customFileName',
+    }
+    d3_save_svg.save(d3.select('svg').node(), config);
+  });
   }
   createCenterContainer() {
     const center_diameter = 150;
@@ -321,11 +331,13 @@ class App extends Component {
     chart_elements.append('path')
       .attr('d', d3.line()([[930, 870],[885, 810]]))
       .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('class', style.legend_path)
       .attr('stroke-width', '3px')
       .attr('stroke-dasharray', '5,5')
       .attr('marker-end', 'url(#arrow1)');
     chart_elements.append('path')
       .attr('d', d3.line()([[830, 920],[740, 910]]))
+      .attr('class', style.legend_path)
       .attr('stroke', 'rgba(0, 0, 0, 1)')
       .attr('stroke-width', '3px')
       .attr('stroke-dasharray', '5,5')
@@ -353,12 +365,14 @@ class App extends Component {
     chart_elements.append('path')
       .attr('d', d3.line()([[160, 820],[415, 680]]))
       .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('class', style.legend_path)
       .attr('stroke-width', '3px')
       .attr('stroke-dasharray', '5,5')
       .attr('marker-end', 'url(#arrow2)');
     chart_elements.append('path')
       .attr('d', d3.line()([[150, 820],[402, 525]]))
       .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('class', style.legend_path)
       .attr('stroke-width', '3px')
       .attr('stroke-dasharray', '5,5')
       .attr('marker-end', 'url(#arrow2)');
@@ -373,6 +387,7 @@ class App extends Component {
       .attr('class', style.legend_text)
       .attr('text-anchor', 'start')
       .attr('fill', 'rgba(0, 0, 0, 1)')
+      .style('font-family', 'Roboto')
       .html('and Southeast Asia');
     chart_elements.append('text')
       .attr('transform', 'translate(50, 900)rotate(0)')
@@ -391,6 +406,7 @@ class App extends Component {
     chart_elements.append('path')
       .attr('d', d3.line()([[170, 240],[265, 390]]))
       .attr('stroke', 'rgba(0, 0, 0, 1)')
+      .attr('class', style.legend_path)
       .attr('stroke-width', '3px')
       .attr('stroke-dasharray', '5,5')
       .attr('marker-end', 'url(#arrow3)');
@@ -485,7 +501,7 @@ class App extends Component {
         <div className={style.heading_container}>
           <h1>When farmers buy fertilizer</h1>
         </div>
-        <div className={style.chart_container}></div>
+        <div className={style.chart_container} id="svg"></div>
         <div className={style.scales_container}>
           {
             // The scale on the right.
@@ -497,8 +513,10 @@ class App extends Component {
           <div>Source: <a href="https://unctad.org">UNCTAD</a></div>
         </div>
         <div className={style.tooltip}></div>
+        <div><button id="export">Export SVG</button></div>
       </div>
     );
   }
 }
 export default App;
+
