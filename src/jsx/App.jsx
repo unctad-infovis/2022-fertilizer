@@ -16,8 +16,8 @@ import fertilizer_img from './../../media/img/fertilizer.png';
 
 const scaleMax = 2.8,
       scaleMin = 1,
-      // f = chroma.scale(['#ded9d5', '#009edb']).domain([scaleMax, scaleMin]);
-      f = chroma.scale(['#ded9d5', '#ded9d5', '#c5dfef', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
+      // f = chroma.scale(['rgba(124, 112, 103, 0.4)', '#0077B8']).domain([scaleMax, scaleMin]);
+      f = chroma.scale(['rgba(124, 112, 103, 0.4)', 'rgba(124, 112, 103, 0.4)', 'rgba(0, 119, 184, 0.6)', '#0077B8', '#0077B8']).domain([2.8, 2.7, 1.9, 1.3, 1]);
 const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
       outer_radius = 300,
@@ -82,7 +82,7 @@ class App extends Component {
     // Svg chart container.
     chart_elements = svg.append('g')
       .attr('class', style.chart_elements)
-      .attr('transform', 'translate(-20, 0)');
+      .attr('transform', 'translate(-20, 30)');
 
     chart_elements.append('g')
       .attr('class', 'months_arcs1')
@@ -184,7 +184,7 @@ class App extends Component {
       .attr('cy', height / 2)
       .attr('r', d => y(d))
       .style('fill', 'none')
-      .style('stroke', d => (d === 0) ? 'rgba(235, 234, 230, 0.5)' : 'rgba(235, 234, 230, 0.5)')
+      .style('stroke', d => (d === 0) ? 'rgba(124, 112, 103, 0.1)' : 'rgba(124, 112, 103, 0.1)')
       .style('stroke-width', d => (d === 0) ? 4 : 2)
       .style('pointer-events', 'none');
     chart_legend_rings.selectAll('text')
@@ -218,7 +218,7 @@ class App extends Component {
           .attr('y', 0)
           .text(d => d.region)
           .style('font-weight', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 700 : 400)
-          .style('fill', d => (d.concern < 1.5 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '#009edb' :(d.concern < 2 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') && d.value > 0.10) ? '#c5dfef' : '#7C7067')
+          .style('fill', d => (d.concern < 1.5 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '#0077B8' :(d.concern < 2 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') && d.value > 0.10) ? 'rgba(0, 119, 184, 0.6)' : '#7C7067')
           .style('font-size', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? '16pt' : '11pt')
           .style('text-transform', d => (d.concern < 2 && d.value > 0.10 && (d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug')) ? 'uppercase' : 'none')
           .style('dominant-baseline', 'middle')
@@ -278,7 +278,7 @@ class App extends Component {
       .append('textPath')
       .attr('startOffset', '50%')
       .style('text-anchor', 'middle')
-      .style('fill', d => (d.index === 4 || d.index === 6 || d.index === 8 || d.index === 10) ? '#009edb' : '#6e6259')
+      .style('fill', d => (d.index === 4 || d.index === 6 || d.index === 8 || d.index === 10) ? '#0077B8' : '#6e6259')
       .style('font-weight', d => (d.index === 4 || d.index === 6 || d.index === 8 || d.index === 10) ? 700 : 400)
       .attr('xlink:href', (d, i) => '#months_arc' + i)
       .text((d) => d.data.name);
@@ -347,7 +347,7 @@ class App extends Component {
         .attr('class', style.legend_text)
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
-        .html('African farmers');
+        .html('In Africa farmers');
       chart_elements.append('text')
         .attr('transform', 'translate(840, 925)rotate(0)')
         .attr('class', style.legend_text)
@@ -390,19 +390,19 @@ class App extends Component {
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .style('font-family', 'Roboto')
-        .html('and Southeast Asia');
+        .html('and South-East Asia,');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 900)rotate(0)')
         .attr('class', style.legend_text)
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
-        .html('farmers appear');
+        .html('farmers appear to');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 925)rotate(0)')
         .attr('class', style.legend_text)
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
-        .html('better sourced');
+        .html('be better sourced');
     }, 2000);
 
     // South Asia
@@ -419,7 +419,7 @@ class App extends Component {
         .attr('class', style.legend_text)
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
-        .html('In South Asia');
+        .html('In South Asia,');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 175)rotate(0)')
         .attr('class', style.legend_text)
@@ -504,7 +504,7 @@ class App extends Component {
     return (
       <div className={style.app}>
         <div className={style.heading_container}>
-          <h1>When farmers buy fertilizer</h1>
+          <h1>In Africa countries are in urgent need<br />of fertilizer but lack supplies</h1>
         </div>
         <div className={style.chart_container} id="svg"></div>
         <div className={style.scales_container}>

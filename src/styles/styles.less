@@ -15,7 +15,7 @@ body {
   overflow: hidden;
   position: relative;
   width: 900px;
-  height: 830px;
+  height: 860px;
   .tooltip {
     background-color: rgba(255, 255, 255, 0.9);
     border: 1px solid #ccc;
@@ -31,16 +31,9 @@ body {
     position: absolute;
     width: 100%;
     h1 {
-      font-size: 26pt;
-      line-height: 26pt;
+      font-size: 24pt;
+      line-height: 24pt;
       margin: 10px 0 0 0;
-      padding: 0;
-      text-align: center;
-    }
-    h3 {
-      font-size: 20pt;
-      line-height: 20pt;
-      margin: 0 0 0 0;
       padding: 0;
       text-align: center;
     }
@@ -85,6 +78,7 @@ body {
   }
   .months_text {
     font-size: 14pt;
+    text-shadow: 1px 1px 1px #fff;
   }
   .meta_container {
     bottom: 40px;
@@ -132,13 +126,13 @@ body {
       width: 28px;
     }
     &:before {
-      content: '←needs supplies';
+      content: '←need supplies';
       right: -32px;
       text-align: left;
     }
     &:after {
-      content: 'has supplies→';
-      left: -120px;
+      content: 'have supplies→';
+      left: -127px;
       text-align: right;
     }
     .scale_container {
@@ -161,7 +155,7 @@ body {
     font-size: 20pt;
     font-weight: bold;
     tspan {
-      fill: #f00;
+      fill: #ab1d37;
     }
   }
   .legend_path {
