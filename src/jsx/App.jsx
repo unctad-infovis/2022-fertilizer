@@ -414,18 +414,18 @@ class App extends Component {
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow3)');
-      chart_elements.append('text')
-        .attr('transform', 'translate(50, 150)rotate(0)')
-        .attr('class', style.legend_text)
-        .attr('text-anchor', 'start')
-        .attr('fill', '#000')
-        .html('In South Asia,');
+      // chart_elements.append('text')
+      //   .attr('transform', 'translate(50, 150)rotate(0)')
+      //   .attr('class', style.legend_text)
+      //   .attr('text-anchor', 'start')
+      //   .attr('fill', '#000')
+      //   .html('In South Asia,');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 175)rotate(0)')
         .attr('class', style.legend_text)
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
-        .html('some countries');
+        .html('Some countries');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 200)rotate(0)')
         .attr('class', style.legend_text)
