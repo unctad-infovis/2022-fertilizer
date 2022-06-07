@@ -10,10 +10,11 @@ import chroma from 'chroma-js';
 // https://github.com/edeno/d3-save-svg
 import d3_save_svg from 'd3-save-svg';
 
-// Use chroma to make the color scale.
-// https://gka.github.io/chroma.js/
+// Load resources.
 import fertilizer_img from './../../media/img/fertilizer.png';
 
+// Use chroma to make the color scale.
+// https://gka.github.io/chroma.js/
 const scaleMax = 2.8,
       scaleMin = 1,
       // f = chroma.scale(['rgba(124, 112, 103, 0.4)', '#0077B8']).domain([scaleMax, scaleMin]);
