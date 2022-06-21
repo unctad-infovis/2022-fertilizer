@@ -138,12 +138,14 @@ class App extends Component {
       // Create line legend.
       this.createLineLegend();
     }, 13000);
+
+    // Export SVG
     d3.select('button#export').on('click', function() {
-    var config = {
-      filename: 'customFileName',
-    }
-    d3_save_svg.save(d3.select('svg').node(), config);
-  });
+      var config = {
+        filename: 'customFileName',
+      }
+      d3_save_svg.save(d3.select('svg').node(), config);
+    });
   }
   createCenterContainer() {
     const center_diameter = 150;
