@@ -18,7 +18,7 @@ import fertilizer_img from './../../media/img/fertilizer.png';
 const scaleMax = 2.8,
       scaleMin = 1,
       // f = chroma.scale(['rgba(124, 112, 103, 0.4)', '#0077B8']).domain([scaleMax, scaleMin]);
-      f = chroma.scale(['rgba(124, 112, 103, 0.4)', 'rgba(124, 112, 103, 0.4)', 'rgba(0, 119, 184, 0.6)', '#0077B8', '#0077B8']).domain([2.8, 2.7, 1.9, 1.3, 1]);
+      f = chroma.scale(['rgba(174, 162, 154, 0.4)', 'rgba(124, 112, 103, 0.4)', 'rgba(0, 119, 184, 0.6)', '#009edb', '#009edb']).domain([2.8, 2.7, 1.9, 1.3, 1]);
 const margin = {top: 0, right: 0, bottom: 0, left: 0},
       inner_radius = 0,
       outer_radius = 300,
