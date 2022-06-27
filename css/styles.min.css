@@ -1,8 +1,3 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 .app___2khK2 {
   background-color: #fff;
   box-sizing: border-box;
@@ -146,7 +141,7 @@ body {
   font-weight: bold;
 }
 .app___2khK2 .legend_text___naI0q tspan {
-  fill: #ab1d37;
+  fill: #eb0045;
 }
 button {
   position: fixed;
