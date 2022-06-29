@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import style from './../styles/styles.less';
+import './../styles/styles.less';
 
 // https://d3js.org/
 import * as d3 from 'd3';
@@ -66,7 +66,7 @@ class App extends Component {
   componentWillUnMount() {
   }
   getData() {
-    d3.json('./data/data.json').then((data) => {
+    d3.json('./media/data/data.json').then((data) => {
       x.domain(data.map(d => d.id));
       this.data = data;
       this.createRadialChart(data);
@@ -74,7 +74,7 @@ class App extends Component {
   }
   createRadialChart(data) {
     // Create the svg.
-    const svg = d3.select('.' + style.chart_container)
+    const svg = d3.select('.' + 'chart_container')
       .append('svg')
       // .attr('preserveAspectRatio', 'xMinYMin meet')
       .attr('viewBox', -margin.left + ' ' + -margin.top + ' ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
@@ -82,7 +82,7 @@ class App extends Component {
 
     // Svg chart container.
     chart_elements = svg.append('g')
-      .attr('class', style.chart_elements)
+      .attr('class', 'chart_elements')
       .attr('transform', 'translate(-20, 30)');
 
     chart_elements.append('g')
@@ -154,11 +154,11 @@ class App extends Component {
       .append('foreignObject')
       .style('width', center_diameter + 'px')
       .style('height', center_diameter + 'px')
-      .html('<div class="' + style.center_container + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"><img src="' + fertilizer_img + '" /></div>');
+      .html('<div class="' + 'center_container' + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"><img src="' + fertilizer_img + '" /></div>');
   }
   createRadialBars(data) {
     chart_elements.append('g')
-      .attr('class', style.bars_container)
+      .attr('class', 'bars_container')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
       .selectAll('path')
       .data(data).enter()
@@ -179,7 +179,7 @@ class App extends Component {
       .style('pointer-events', 'none');
   }
   createRadialRings() {
-    const chart_legend_rings = chart_elements.append('g').attr('class', style.chart_legend_rings);
+    const chart_legend_rings = chart_elements.append('g').attr('class', 'chart_legend_rings');
     chart_legend_rings.selectAll('circle')
       .data(legend_ring_points)
       .join('circle')
@@ -203,12 +203,12 @@ class App extends Component {
   }
   createBarInfo(data) {
     chart_elements.append('g')
-      .attr('class', style.bars_info_container)
+      .attr('class', 'bars_info_container')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
       .selectAll('g')
       .data(data).enter()
       .append('g')
-      .attr('class', style.bar_info_container)
+      .attr('class', 'bar_info_container')
       .attr('id', d => d.id)
       .attr('opacity', 1)
       .attr('transform', d => 'rotate(' + (((x(d.id) + x.bandwidth() / 2) * 180) / Math.PI - 90) + ')')
@@ -273,7 +273,7 @@ class App extends Component {
     });
     //Append the months names within the arcs.
     chart_elements.append('g')
-      .attr('class', style.months_text)
+      .attr('class', 'months_text')
       .selectAll('text')
       .data(pie(months_data))
       .enter().append('text')
@@ -334,32 +334,32 @@ class App extends Component {
       chart_elements.append('path')
         .attr('d', d3.line()([[930, 870],[885, 810]]))
         .attr('stroke', 'rgba(0, 0, 0, 1)')
-        .attr('class', style.legend_path)
+        .attr('class', 'legend_path')
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow1)');
       chart_elements.append('path')
         .attr('d', d3.line()([[830, 920],[740, 910]]))
-        .attr('class', style.legend_path)
+        .attr('class', 'legend_path')
         .attr('stroke', 'rgba(0, 0, 0, 1)')
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow1)');
       chart_elements.append('text')
         .attr('transform', 'translate(840, 900)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('In Africa farmers');
       chart_elements.append('text')
         .attr('transform', 'translate(840, 925)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('<tspan>urgently</tspan> need');
       chart_elements.append('text')
         .attr('transform', 'translate(840, 954)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('fertilizer imports');
@@ -370,39 +370,39 @@ class App extends Component {
       chart_elements.append('path')
         .attr('d', d3.line()([[160, 820],[415, 680]]))
         .attr('stroke', 'rgba(0, 0, 0, 1)')
-        .attr('class', style.legend_path)
+        .attr('class', 'legend_path')
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow2)');
       chart_elements.append('path')
         .attr('d', d3.line()([[150, 820],[402, 525]]))
         .attr('stroke', 'rgba(0, 0, 0, 1)')
-        .attr('class', style.legend_path)
+        .attr('class', 'legend_path')
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow2)');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 850)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('In Latin America');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 875)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .style('font-family', 'Roboto')
         .html('and South-East Asia,');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 900)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('farmers appear to');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 925)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', 'rgba(0, 0, 0, 1)')
         .html('be better sourced');
@@ -413,31 +413,31 @@ class App extends Component {
       chart_elements.append('path')
         .attr('d', d3.line()([[170, 240],[265, 390]]))
         .attr('stroke', 'rgba(0, 0, 0, 1)')
-        .attr('class', style.legend_path)
+        .attr('class', 'legend_path')
         .attr('stroke-width', '3px')
         .attr('stroke-dasharray', '5,5')
         .attr('marker-end', 'url(#arrow3)');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 150)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
         .html('Some countries');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 175)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
         .html('in South Asia');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 200)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
         .html('will face challenges');
       chart_elements.append('text')
         .attr('transform', 'translate(50, 225)rotate(0)')
-        .attr('class', style.legend_text)
+        .attr('class', 'legend_text')
         .attr('text-anchor', 'start')
         .attr('fill', '#000')
         .html('later this year');
@@ -445,9 +445,9 @@ class App extends Component {
   }
   createInteractiveLayer(data) {
     // Interactive layer.
-    chart_elements.selectAll('.' + style.bars_aux).remove();
+    chart_elements.selectAll('.' + 'bars_aux').remove();
     chart_elements.append('g')
-      .attr('class', style.bars_aux)
+      .attr('class', 'bars_aux')
       .attr('transform', 'translate(' + width / 2 + ',' + height / 2 + ')')
       .selectAll('a')
       .data(data).enter()
@@ -455,7 +455,7 @@ class App extends Component {
       .attr('target', '_blank')
       .attr('href', d => '')
       .append('path')
-      .attr('class', style.aux)
+      .attr('class', 'aux')
       .attr('data-id', d => d.region)
       .attr('fill', 'transparent')
       .attr('d', d3.arc()
@@ -470,17 +470,17 @@ class App extends Component {
   }
   onMouseOver(event, d) {
     if (d.region !== '') {
-      d3.select('.' + style.bars_container)
+      d3.select('.' + 'bars_container')
         .selectAll('path:not(path[data-id="' + d.region + '"])')
         .style('opacity', 0.0);
-      d3.select('.' + style.bars_info_container)
+      d3.select('.' + 'bars_info_container')
         .select('text[data-id="' + d.region + '"]')
         .style('opacity', 1);
-      d3.select('.' + style.bars_info_container)
+      d3.select('.' + 'bars_info_container')
         .selectAll('text:not(text[data-id="' + d.region + '"])')
         .style('opacity', 0.0);
       d3.select(event.currentTarget).style('opacity', 1);
-      d3.select('.' + style.tooltip)
+      d3.select('.' + 'tooltip')
         .style('left', (event.pageX + 20) + 'px')
         .style('top', (event.pageY + 20) + 'px')
         .style('opacity', 1)
@@ -489,13 +489,13 @@ class App extends Component {
   }
   onMouseOut(event, d) {
     d3.select(event.currentTarget).style('opacity', 0.8);
-    d3.select('.' + style.bars_container)
+    d3.select('.' + 'bars_container')
       .selectAll('path')
       .style('opacity', 1);
-    d3.select('.' + style.bars_info_container)
+    d3.select('.' + 'bars_info_container')
       .selectAll('text')
       .style('opacity', d => 1);
-    d3.select('.' + style.tooltip)
+    d3.select('.' + 'tooltip')
       .style('opacity', 0)
   }
   // shouldComponentUpdate(nextProps, nextState) {}
@@ -505,22 +505,22 @@ class App extends Component {
   // componentDidCatch() {}
   render() {
     return (
-      <div className={style.app}>
-        <div className={style.heading_container}>
+      <div className={'app'}>
+        <div className={'heading_container'}>
           <h1>In Africa countries are in urgent need<br />of fertilizer but lack supplies</h1>
         </div>
-        <div className={style.chart_container} id="svg"></div>
-        <div className={style.scales_container}>
+        <div className={'chart_container'} id="svg"></div>
+        <div className={'scales_container'}>
           {
             // The scale on the right.
-            scales.map((scale, i) => (<div key={i} className={style.scale_container} style={{backgroundColor:f(scale)}}></div>))
+            scales.map((scale, i) => (<div key={i} className={'scale_container'} style={{backgroundColor:f(scale)}}></div>))
           }
         </div>
-        <div className={style.meta_container}>
+        <div className={'meta_container'}>
           <div>Relative fertilizer procurement and the priority for selected areas</div>
           <div>Source: <a href="https://unctad.org">UNCTAD</a></div>
         </div>
-        <div className={style.tooltip}></div>
+        <div className={'tooltip'}></div>
         <div><button id="export">Export SVG</button></div>
       </div>
     );
