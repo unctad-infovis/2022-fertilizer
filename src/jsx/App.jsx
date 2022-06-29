@@ -55,14 +55,14 @@ const months_data = [{name:'January',value:6},{name:'February',value:6},{name:'M
 const App = () => {
 
   useEffect(() => {
-    this.getData();
+    getData();
   }, []);
 
   const getData = () => {
     d3.json('./assets/data/data.json').then((data) => {
       x.domain(data.map(d => d.id));
-      this.data = data;
-      this.createRadialChart(data);
+      data = data;
+      createRadialChart(data);
     });
   }
 
@@ -119,18 +119,18 @@ const App = () => {
     });
 
     // Create radial bars.
-    this.createRadialBars(data);
+    createRadialBars(data);
     // Create the center container.
-    this.createCenterContainer();
+    createCenterContainer();
     // Create radial rings.
-    this.createRadialRings();
+    createRadialRings();
     // Create bar info.
-    this.createBarInfo(data);
+    createBarInfo(data);
     setTimeout(() => {
       // Create interactive layer.
-      this.createInteractiveLayer(data);
+      createInteractiveLayer(data);
       // Create line legend.
-      this.createLineLegend();
+      createLineLegend();
     }, 13000);
 
     // Export SVG
@@ -175,7 +175,7 @@ const App = () => {
       .style('pointer-events', 'none');
   }
 
-  const createRadialRings () => {
+  const createRadialRings = () => {
     const chart_legend_rings = chart_elements.append('g').attr('class', 'chart_legend_rings');
     chart_legend_rings.selectAll('circle')
       .data(legend_ring_points)
@@ -199,7 +199,7 @@ const App = () => {
       .style('pointer-events', 'none');
   }
 
-  const createBarInfo (data) => {
+  const createBarInfo = (data) => {
     chart_elements.append('g')
       .attr('class', 'bars_info_container')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
@@ -285,7 +285,7 @@ const App = () => {
       .text((d) => d.data.name);
   }
 
-  const createLineLegend () => {
+  const createLineLegend = () => {
     chart_elements.append('defs')
       .append('marker')
         .attr('id', 'arrow1')
@@ -443,7 +443,7 @@ const App = () => {
     }, 4000);
   }
 
-  const createInteractiveLayer (data) => {
+  const createInteractiveLayer = (data) => {
     // Interactive layer.
     chart_elements.selectAll('.' + 'bars_aux').remove();
     chart_elements.append('g')
@@ -465,11 +465,11 @@ const App = () => {
         .endAngle(d => x(d.id) + x.bandwidth())
         .padRadius(inner_radius))
       // https://stackoverflow.com/questions/63693132/unable-to-get-node-datum-on-mouseover-in-d3-v6
-      .on('mouseover', (event, d) => this.onMouseOver(event, d))
-      .on('mouseout', (event, d) => this.onMouseOut(event, d));
+      .on('mouseover', (event, d) => onMouseOver(event, d))
+      .on('mouseout', (event, d) => onMouseOut(event, d));
   }
 
-  const onMouseOver (event, d) => {
+  const onMouseOver = (event, d) => {
     if (d.region !== '') {
       d3.select('.' + 'bars_container')
         .selectAll('path:not(path[data-id="' + d.region + '"])')
@@ -489,7 +489,7 @@ const App = () => {
     }
   }
 
-  const onMouseOut (event, d) => {
+  const onMouseOut = (event, d) => {
     d3.select(event.currentTarget).style('opacity', 0.8);
     d3.select('.' + 'bars_container')
       .selectAll('path')
