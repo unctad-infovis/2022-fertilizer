@@ -11,7 +11,7 @@ import chroma from 'chroma-js';
 import d3_save_svg from 'd3-save-svg';
 
 // Load resources.
-import fertilizer_img from './../../media/img/fertilizer.png';
+import fertilizer_img from './../../assets/img/fertilizer.png';
 
 // Use chroma to make the color scale.
 // https://gka.github.io/chroma.js/
@@ -66,7 +66,7 @@ class App extends Component {
   componentWillUnMount() {
   }
   getData() {
-    d3.json('./media/data/data.json').then((data) => {
+    d3.json('./assets/data/data.json').then((data) => {
       x.domain(data.map(d => d.id));
       this.data = data;
       this.createRadialChart(data);
