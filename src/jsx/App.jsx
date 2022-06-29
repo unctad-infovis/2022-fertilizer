@@ -31,7 +31,7 @@ const margin = {top: 0, right: 0, bottom: 0, left: 0},
 
 const may_push = 0.49;
 const x = d3.scaleBand()
-  .range([0.06 + Math.PI/2 + may_push, Math.PI * 2 + Math.PI/2 + may_push])
+  .range([0.06 + Math.PI/2 + may_push, Math.PI * 2 + Math.PI / 2 + may_push])
   .align(0);
 const y = d3.scaleLinear()
   .range([inner_radius, outer_radius])
@@ -52,27 +52,21 @@ const pie = d3.pie()
   .sort(null);
 const months_data = [{name:'January',value:6},{name:'February',value:6},{name:'March',value:6},{name:'April',value:6},{name:'May',value:5.2},{name:'',value:0.8},{name:'June',value:5.2},{name:'',value:0.8},{name:'July',value:5.2},{name:'',value:0.8},{name:'August',value:5.2},{name:'September',value:6},{name:'October',value:6},{name:'November',value:6},{name:'December',value:6}];
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  
-  }
-  componentDidMount() {
-    this.getData();
-  }
-  componentDidUpdate(prevProps, prevState, snapshot) {
+const App = () => {
 
-  }
-  componentWillUnMount() {
-  }
-  getData() {
+  useEffect(() => {
+    this.getData();
+  }, []);
+
+  const getData = () => {
     d3.json('./assets/data/data.json').then((data) => {
       x.domain(data.map(d => d.id));
       this.data = data;
       this.createRadialChart(data);
     });
   }
-  createRadialChart(data) {
+
+  const createRadialChart = (data) => {
     // Create the svg.
     const svg = d3.select('.' + 'chart_container')
       .append('svg')
@@ -147,7 +141,8 @@ class App extends Component {
       d3_save_svg.save(d3.select('svg').node(), config);
     });
   }
-  createCenterContainer() {
+
+  const createCenterContainer = () => {
     const center_diameter = 150;
     chart_elements.append('g')
       .attr('transform', 'translate(' + (width / 2 - center_diameter / 2) + ',' + (height / 2 - center_diameter / 2) + ')')
@@ -156,7 +151,8 @@ class App extends Component {
       .style('height', center_diameter + 'px')
       .html('<div class="' + 'center_container' + '" style="width: ' + center_diameter + 'px; height: ' + center_diameter + 'px;"><img src="' + fertilizer_img + '" /></div>');
   }
-  createRadialBars(data) {
+
+  const createRadialBars = (data) => {
     chart_elements.append('g')
       .attr('class', 'bars_container')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
@@ -178,7 +174,8 @@ class App extends Component {
       .style('opacity', d => ((d.month === 'May' || d.month === 'Jul' || d.month === 'Jun' || d.month === 'Aug') ? 1 : 1))
       .style('pointer-events', 'none');
   }
-  createRadialRings() {
+
+  const createRadialRings () => {
     const chart_legend_rings = chart_elements.append('g').attr('class', 'chart_legend_rings');
     chart_legend_rings.selectAll('circle')
       .data(legend_ring_points)
@@ -201,7 +198,8 @@ class App extends Component {
       .style('font-weight', d => (d === 0) ? 700 : 700)
       .style('pointer-events', 'none');
   }
-  createBarInfo(data) {
+
+  const createBarInfo (data) => {
     chart_elements.append('g')
       .attr('class', 'bars_info_container')
       .attr('transform', 'translate(' + (width / 2) + ',' + (height / 2) + ')')
@@ -286,7 +284,8 @@ class App extends Component {
       .attr('xlink:href', (d, i) => '#months_arc' + i)
       .text((d) => d.data.name);
   }
-  createLineLegend() {
+
+  const createLineLegend () => {
     chart_elements.append('defs')
       .append('marker')
         .attr('id', 'arrow1')
@@ -443,7 +442,8 @@ class App extends Component {
         .html('later this year');
     }, 4000);
   }
-  createInteractiveLayer(data) {
+
+  const createInteractiveLayer (data) => {
     // Interactive layer.
     chart_elements.selectAll('.' + 'bars_aux').remove();
     chart_elements.append('g')
@@ -468,7 +468,8 @@ class App extends Component {
       .on('mouseover', (event, d) => this.onMouseOver(event, d))
       .on('mouseout', (event, d) => this.onMouseOut(event, d));
   }
-  onMouseOver(event, d) {
+
+  const onMouseOver (event, d) => {
     if (d.region !== '') {
       d3.select('.' + 'bars_container')
         .selectAll('path:not(path[data-id="' + d.region + '"])')
@@ -487,7 +488,8 @@ class App extends Component {
         .html(d.region + ': ' + ((d.value > 0) ? '' : '') + (d.value * 100).toFixed(0) + '%');
     }
   }
-  onMouseOut(event, d) {
+
+  const onMouseOut (event, d) => {
     d3.select(event.currentTarget).style('opacity', 0.8);
     d3.select('.' + 'bars_container')
       .selectAll('path')
@@ -498,33 +500,27 @@ class App extends Component {
     d3.select('.' + 'tooltip')
       .style('opacity', 0)
   }
-  // shouldComponentUpdate(nextProps, nextState) {}
-  // static getDerivedStateFromProps(props, state) {}
-  // getSnapshotBeforeUpdate(prevProps, prevState) {}
-  // static getDerivedStateFromError(error) {}
-  // componentDidCatch() {}
-  render() {
-    return (
-      <div className={'app'}>
-        <div className={'heading_container'}>
-          <h1>In Africa countries are in urgent need<br />of fertilizer but lack supplies</h1>
-        </div>
-        <div className={'chart_container'} id="svg"></div>
-        <div className={'scales_container'}>
-          {
-            // The scale on the right.
-            scales.map((scale, i) => (<div key={i} className={'scale_container'} style={{backgroundColor:f(scale)}}></div>))
-          }
-        </div>
-        <div className={'meta_container'}>
-          <div>Relative fertilizer procurement and the priority for selected areas</div>
-          <div>Source: <a href="https://unctad.org">UNCTAD</a></div>
-        </div>
-        <div className={'tooltip'}></div>
-        <div><button id="export">Export SVG</button></div>
+
+  return (
+    <div className={'app'}>
+      <div className={'heading_container'}>
+        <h1>In Africa countries are in urgent need<br />of fertilizer but lack supplies</h1>
       </div>
-    );
-  }
+      <div className={'chart_container'} id="svg"></div>
+      <div className={'scales_container'}>
+        {
+          // The scale on the right.
+          scales.map((scale, i) => (<div key={i} className={'scale_container'} style={{backgroundColor:f(scale)}}></div>))
+        }
+      </div>
+      <div className={'meta_container'}>
+        <div>Relative fertilizer procurement and the priority for selected areas</div>
+        <div>Source: <a href="https://unctad.org">UNCTAD</a></div>
+      </div>
+      <div className={'tooltip'}></div>
+      <div><button id="export">Export SVG</button></div>
+    </div>
+  );
 }
 export default App;
 

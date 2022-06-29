@@ -40,18 +40,15 @@ module.exports = {
       },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
+        type: 'asset/resource',
         use: [
           {
             loader: 'file-loader',
             options: {
-              name: 'img/[hash]-[name].[ext]'
+              name: 'assets/img/[name].[ext]'
             }
           }
         ]
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf|otf)$/i,
-        type: 'asset/resource',
       }
     ]
   },
