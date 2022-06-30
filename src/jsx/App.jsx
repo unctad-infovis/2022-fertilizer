@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import './../styles/styles.less';
 
 // https://d3js.org/
