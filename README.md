@@ -2,6 +2,10 @@
 
 **Live demo** https://unctad-infovis.github.io/2022-fertilizer/
 
+## Used in
+
+* [Global impact of the war in Ukraine: Billions of people face the greatest cost-of-living crisis in a generation](https://unctad.org/webflyer/global-impact-war-ukraine-billions-people-face-greatest-cost-living-crisis-generation)
+
 ## Rights of usage
 
 Contact Teemo Tebest.
